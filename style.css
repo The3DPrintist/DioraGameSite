@@ -1,0 +1,209 @@
+html {
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: Lato;
+    src: url(https://zack3dprints.com/font/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: LatoB;
+    src: url(https://zack3dprints.com/font/Lato-Bold.ttf);
+}
+
+@font-face {
+    font-family: Simp;
+    src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
+}
+
+@font-face {
+    font-family: 'NotoColorEmoji';
+    src: url('/font/NotoColorEmoji.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1 {
+    background-image: url("/headerbg.gif");
+    background-size: pattern;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:64px;
+    font-weight: bold;
+    font-family: Lato
+}
+
+h2 {
+    color: #FFFFFF;
+    font-family: Lato
+}
+
+p {
+    color: #FFFFFF;
+    font-family: Lato
+}
+
+body{
+    background-color:#252525;
+}
+
+label{
+    color: #FFFFFF;
+    font-family: Lato;
+    margin: 16px;
+}
+
+input{
+    border-radius: 8px;
+    border-width: 0px;
+    padding: 8px;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: #121212;
+}
+
+.section {
+    background: #1E1E1E;
+    text-align: center;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 15%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    box-shadow:  5px 5px 8px #0e0e0e;
+    transform-origin: 50% 0% 0px;
+}
+
+.section-anim {
+    animation-name: zoom3;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in;
+}
+
+.flexbox {
+    display: flex;
+    margin: 15%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    gap: 16px;
+}
+
+.flexsection {
+    background: #1E1E1E;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow:  5px 5px 8px #0e0e0e;
+    transform-origin: 50% 0% 0px;
+    padding: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 8px;
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+@keyframes zoom {
+    from {
+    transform: scale(0,0);
+    }
+    to {
+    transform: scale(1,1);
+    }
+}
+
+@keyframes zoom2 {
+    from {
+    transform: perspective(1920px) rotateX(-90deg);
+    }
+    to {
+    transform: perspective(1920px) rotateX(0deg);
+    }
+}
+
+@keyframes zoom3 {
+    from {
+    transform: scale(1,0);
+    }
+    to {
+    transform: scale(1,1);
+    }
+}
+
+/*.btn{
+    background-color: #f8f9fa;
+    color: #1E1E1E;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: Lato;
+    margin: 4px;
+}*/
+.btn{
+    border-radius: 8px;
+}
+
+.rounded{
+    box-shadow:  5px 5px 8px #1A1A1A;
+}
+
+
+.hline {
+    border-color: #1E1E1E;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+/*
+body {
+    background-image: url("bgdots.png");
+    background-repeat: repeat;
+}
+*/
+
+#bg {
+    background-image: url("bgdots2.png");
+    background-repeat: repeat;
+    background-position: top left;
+    background-attachment: fixed;
+    position: fixed;
+    z-index: -100;
+    height: 100%;
+    width: 100%;
+}
+
+#blurbg{
+    background-color: rgba(25, 25, 25, 0.05);
+    background-attachment: fixed;
+    position: fixed;
+    backdrop-filter: blur(80px);
+    z-index: -101;
+    height: 100%;
+    width: 100%;
+}
+
+#glowbg{
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    background-color: #ffffff;
+    background-attachment: fixed;
+    position: fixed;
+    z-index: -102;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
