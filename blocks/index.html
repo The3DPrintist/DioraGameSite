@@ -39,25 +39,42 @@
   <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
 
   <script type="text/javascript">
-    function LoadFile() {
-        var oFrame = document.getElementById("frmFile");
-        var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-        while (strRawContents.indexOf("\r") >= 0)
-            strRawContents = strRawContents.replace("\r", "");
-        var arrLines = strRawContents.split("\n");
 
-        for (var i = 0; i < arrLines.length; i++) {
-            var curLine = arrLines[i];
-            
-            document.getElementById('container').insertAdjacentHTML('beforeend', '<div class="section"><img src=\"blockicons/' + curLine + '.png\"><p>' + curLine + '</p></div>');
-        }
+    function delay(){
+    return new Promise((resolve, reject) => {
+    setTimeout(resolve, 1)
+    })
+    }
+
+    async function LoadFile() {
+      var oFrame = document.getElementById("frmFile");
+      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+      while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+      var arrLines = strRawContents.split("\n");
+
+      for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var entries = curLine.split(",");
+        
+        await addentry(entries[0],entries[1]=="t",entries[2]=="t");
+      }
+    }
+
+    async function addentry(name,showint,showfx){
+      await delay()
+      let td1 = '<td class=\"tdi\""><img src=\"blockicons/' + name + '.png\"></td>';
+      let td2 = '<td><h2>' + name + '</h2></td>';
+      let td3 = '<td><img src=' + ((showint) ? 'inticon' : 'none') + '.png><img src=' + ((showfx) ? 'fxicon' : 'none') + '.png></td>';
+      document.getElementById('blocktable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + "</tr>");
     }
   </script>
 
-  <div id="container">
-
-  </div>
-  
+  <table id="blocktable">
+    <td><h2>Icon</h2></td>
+    <td><h2>Name</h2></td>
+    <td><h2>Info</h2></td>
+  </table>
 
 </body>
 </html>
