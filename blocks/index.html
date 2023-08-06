@@ -15,30 +15,19 @@
 
 <body>
 
-  <div id="glowbg"></div>
-  <div id="blurbg"></div>
-  <div id="bg"></div>
-
   <div style="margin-left: 15%">
     <h1>Block Library</h1>
-    <p>Work In Progess 3D Playdate Game</p>
+    <p>Almost every block you can use. Some block are removed to avoid spoilers!</p>
+    <p>Use loadblock("block") to load a block by name</p>
+    <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
-
-  <script>
-    const blob = document.getElementById("glowbg");
-    window.onpointermove = event => { 
-      const { clientX, clientY } = event;
-      
-      blob.animate({
-        left: `${clientX}px`,
-        top: `${clientY}px`
-      }, { duration: 250, fill: "forwards" });
-    }
-  </script>
 
   <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
 
+  <img src="../art/house.png" id="midimg" style="position: float; float: right; overflow: visible;">
+
   <script type="text/javascript">
+    var count = 0;
 
     function delay(){
     return new Promise((resolve, reject) => {
@@ -52,6 +41,13 @@
       while (strRawContents.indexOf("\r") >= 0)
         strRawContents = strRawContents.replace("\r", "");
       var arrLines = strRawContents.split("\n");
+
+      count = arrLines.length;
+
+      let middle = Math.floor(count/2) * 64;
+      document.getElementById("midimg").style.objectPosition = "0px " + middle + "px";
+
+      console.log(middle);
 
       for (var i = 0; i < arrLines.length; i++) {
         var curLine = arrLines[i];
@@ -75,6 +71,10 @@
     <td><h2>Name</h2></td>
     <td><h2>Info</h2></td>
   </table>
+
+  <div style="text-align: center;">
+    <img src="../art/footer.png" style="margin-left: auto; margin-right: auto;" >
+  </div>
 
 </body>
 </html>

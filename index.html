@@ -15,37 +15,51 @@
 
 <body>
 
-  <div id="glowbg"></div>
-  <div id="blurbg"></div>
-  <div id="bg"></div>
-
   <div style="margin-left: 15%">
     <h1>Diora</h1>
-    <p>Work In Progess 3D Playdate Game</p>
+    <p>A work in progress game for the Panic Playdate!</p>
+  </div>
+
+  <div class="section">
+    <img src="/gallery/spin.gif" id="spinvideo" class="rounded">
   </div>
 
   <script>
-    const blob = document.getElementById("glowbg");
-    window.onpointermove = event => { 
-      const { clientX, clientY } = event;
-      
-      blob.animate({
-        left: `${clientX}px`,
-        top: `${clientY}px`
-      }, { duration: 250, fill: "forwards" });
-    }
+    let video = document.getElementById("spinvideo");
+
+    video.addEventListener('loadeddata', function() {
+    console.log("Loaded the video's data!");
+      let dur = video.duration;
+      video.currentTime = Math.random()*dur;
+    }, false);
+
+    video.addEventListener('mousemove', evt => {
+      var rect = video.getBoundingClientRect();
+      var x = evt.clientX - rect.left;
+      let perc = x/rect.width;
+      perc = ((1-perc)+0.5)%1;
+      let dur = video.duration;
+      let newtime = perc*dur
+      video.currentTime = newtime;
+    });
+
   </script>
 
   <div class="section">
-    <h2>Documentation</h2>
-    <a href="/blocks" style="margin: 8px" class="btn btn-outline-light" role="button">Block Library</a>
+    <h2>Cool Stuff</h2>
+    <a href="/devlogs" style="margin: 8px" class="btn btn-outline-light" role="button">Dev Logs</a>
   </div>
 
-  <hr class="hline">
+  <div class="section">
+    <h2>Documentation</h2>
+    <a href="/advanced" style="margin: 8px" class="btn btn-outline-light" role="button">Advanced Editing</a>
+    <a href="/blocks" style="margin: 8px" class="btn btn-outline-light" role="button">Block Library</a>
+    <a href="/commands" style="margin: 8px" class="btn btn-outline-light" role="button">Commands</a>
+  </div>
 
   <div class="section">
     <h2>Tools</h2>
-    <a href="/tool" style="margin: 8px" class="btn btn-outline-light" role="button">Block Tool</a>
+    <a href="/tool" style="margin: 8px" class="btn btn-outline-light" role="button">Block Table Tool</a>
   </div>
 
 </body>

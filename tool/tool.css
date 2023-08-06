@@ -8,10 +8,20 @@
 
     background: #1E1E1E;
     text-align: center;
-    border-radius: 16px;
     padding: 10px;
     box-shadow:  5px 5px 8px #0e0e0e;
     transform-origin: 50% 0% 0px;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
   }
   
   .file {
@@ -30,13 +40,23 @@
 
     background: #1E1E1E;
     text-align: center;
-    border-radius: 16px;
     padding: 10px;
     margin: 15%;
     margin-top: 16px;
     margin-bottom: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
     transform-origin: 50% 0% 0px;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
   }
   
   output .image {

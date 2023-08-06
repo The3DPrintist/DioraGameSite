@@ -26,11 +26,7 @@ html {
 }
 
 h1 {
-    background-image: url("/headerbg.gif");
-    background-size: pattern;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FFC500;
     font-size:64px;
     font-weight: bold;
     font-family: Lato
@@ -47,7 +43,7 @@ p {
 }
 
 body{
-    background-color:#252525;
+    background-color:#121212;
 }
 
 label{
@@ -57,24 +53,44 @@ label{
 }
 
 input{
-    border-radius: 8px;
     border-width: 0px;
     padding: 8px;
     box-shadow: none;
     color: #ffffff;
     background-color: #121212;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
 }
 
 table{
     background: #1E1E1E;
     border-collapse: collapse;
-    border-radius: 16px;
     padding: 10px;
     margin: 15%;
     margin-top: 16px;
     margin-bottom: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
     transform-origin: 50% 0% 0px;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
 }
 
 td{
@@ -86,7 +102,7 @@ td{
     text-align: center; 
 }
 
-.section {
+.sectionold {
     background: #1E1E1E;
     text-align: center;
     border-radius: 16px;
@@ -97,6 +113,30 @@ td{
     box-shadow:  5px 5px 8px #0e0e0e;
     transform-origin: 50% 0% 0px;
 }
+
+.section {
+    background: #1E1E1E;
+    text-align: center;
+    padding: 10px;
+    margin: 15%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    box-shadow:  5px 5px 8px #0e0e0e;
+    transform-origin: 50% 0% 0px;
+    position:relative;
+    overflow:visible;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
+  }
 
 .section-anim {
     animation-name: zoom3;
@@ -115,10 +155,20 @@ td{
 .flexsection {
     background: #1E1E1E;
     text-align: center;
-    border-radius: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
     transform-origin: 50% 0% 0px;
     padding: 10px;
+    clip-path: polygon(
+      0 8px,
+      14px 0,
+      calc(100% - 14px) 0,
+      100% 8px,
+      100% calc(100% - 8px),
+      calc(100% - 14px) 100%,
+      14px 100%,
+      0% calc(100% - 8px),
+      0% 8px
+    )
 }
 
 ::-webkit-scrollbar {

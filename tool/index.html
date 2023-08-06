@@ -8,30 +8,14 @@
 </head>
 
 <body>
-
-  <div id="glowbg"></div>
-  <div id="blurbg"></div>
-  <div id="bg"></div>
   
-  <div style="margin-left: 15%">
-    <h1>Diora Tool</h1>
-    <p>Usefull for creating blocks for Diora</p>
-    <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
-  </div>
+<div style="margin-left: 15%">
+  <h1>Block Table Tool</h1>
+  <p>Converts rendered frames into a dithered image table.</p>
+  <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
+</div>
 
-<hr class="hline">
-
-<script>
-  const circle = document.getElementById("glowbg");
-  window.onpointermove = event => { 
-    const { clientX, clientY } = event;
-    
-    circle.animate({
-      left: `${clientX}px`,
-      top: `${clientY}px`
-    }, { duration: 250, fill: "forwards" });
-  }
-</script>
+<wbr>
 
 <div class ="flexbox">
 
@@ -48,7 +32,6 @@
     </div>
 
 </div>
-
 
 <div class="section" style="overflow: auto">
     <canvas id="tablecanvas" width="64" height="64"></canvas>
@@ -69,7 +52,8 @@
   <button class="btn btn-outline-light" onclick="dltable()">Download</button>
 </div>
 
-<script type="text/javascript" src="tool.js"></script>  
+<script type="text/javascript" src="tool.js"></script>
+
 
 </body>
 </html>
