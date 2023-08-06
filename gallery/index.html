@@ -11,36 +11,41 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="../style.css">
-<title>Diora</title>
+<title>Diora Gallery</title>
 </head>
 
 <body>
 
   <div style="margin-left: 15%">
-    <h1>Diora</h1>
-    <p>A work in progress game for the Panic Playdate!</p>
+    <h1>Gallery</h1>
+    <p>Hype train responsibly.</p>
+    <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
+  </div>
+
+  <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
+
+  <div class="section">
+    <img src="spin.gif" class="rounded">
   </div>
 
   <div class="section">
-    <img src="/gallery/spin.gif" id="spinvideo" class="rounded">
+    <img src="card.png" class="rounded">
   </div>
 
   <div class="section">
-    <h2>Cool Stuff</h2>
-    <a href="/gallery" style="margin: 8px" class="btn btn-outline-light" role="button">Gallery</a>
-    <a href="/devlog" style="margin: 8px" class="btn btn-outline-light" role="button">Devlog</a>
+    <img src="device.jpg" class="rounded" style="width: 50%;">
   </div>
 
   <div class="section">
-    <h2>Documentation</h2>
-    <a href="/advanced" style="margin: 8px" class="btn btn-outline-light" role="button">Advanced Editing</a>
-    <a href="/blocks" style="margin: 8px" class="btn btn-outline-light" role="button">Block Library</a>
-    <a href="/commands" style="margin: 8px" class="btn btn-outline-light" role="button">Commands</a>
+    <img src="car.gif" class="rounded">
   </div>
 
   <div class="section">
-    <h2>Tools</h2>
-    <a href="/tool" style="margin: 8px" class="btn btn-outline-light" role="button">Block Table Tool</a>
+    <img src="tower.gif" class="rounded">
+  </div>
+
+  <div style="text-align: center;">
+    <img src="../art/footer.png" style="margin-left: auto; margin-right: auto;" >
   </div>
 
 </body>

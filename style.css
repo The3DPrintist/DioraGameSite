@@ -58,17 +58,7 @@ input{
     box-shadow: none;
     color: #ffffff;
     background-color: #121212;
-    clip-path: polygon(
-      0 8px,
-      14px 0,
-      calc(100% - 14px) 0,
-      100% 8px,
-      100% calc(100% - 8px),
-      calc(100% - 14px) 100%,
-      14px 100%,
-      0% calc(100% - 8px),
-      0% 8px
-    )
+    border-radius: 8px;
 }
 
 table{
@@ -100,6 +90,25 @@ td{
 
 .tdi{
     text-align: center; 
+}
+
+code{
+    color: #FFC500;
+    background-color: #1E1E1E;
+    margin: 2px 2px;
+    padding: 5px 5px;
+    white-space: nowrap;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+select{
+    border-width: 0px;
+    padding: 8px;
+    box-shadow: none;
+    color: #ffffff;
+    background-color: #121212;
+    border-radius: 8px;
 }
 
 .sectionold {

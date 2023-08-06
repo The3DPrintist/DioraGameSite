@@ -38,7 +38,7 @@ input.addEventListener("change", () => {
     displayImages()
 })
 
-inputDiv.addEventListener("drop", () => {
+/*(inputDiv.addEventListener("drop", () => {
     if(e == null){
         return
     }
@@ -52,7 +52,7 @@ inputDiv.addEventListener("drop", () => {
         imagesArray.push(files[i])
     }
     displayImages()
-})
+})*/
 
 function displayImages() {
 

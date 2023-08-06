@@ -11,6 +11,7 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="../style.css">
+<title>Diora Block Library</title>
 </head>
 
 <body>
@@ -18,7 +19,7 @@
   <div style="margin-left: 15%">
     <h1>Block Library</h1>
     <p>Almost every block you can use. Some block are removed to avoid spoilers!</p>
-    <p>Use loadblock("block") to load a block by name</p>
+    <p>Use <code onclick="copyinner(this)">loadblock("block")</code> to load a block by name</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
@@ -26,12 +27,20 @@
 
   <img src="../art/house.png" id="midimg" style="position: float; float: right; overflow: visible;">
 
+  <script>
+    function copyinner(element){
+      let code = element.innerHTML
+      console.log("copied "+code);
+      navigator.clipboard.writeText(code);
+    }
+  </script>
+
   <script type="text/javascript">
     var count = 0;
 
     function delay(){
     return new Promise((resolve, reject) => {
-    setTimeout(resolve, 1)
+      setTimeout(resolve, 1);
     })
     }
 
@@ -46,8 +55,6 @@
 
       let middle = Math.floor(count/2) * 64;
       document.getElementById("midimg").style.objectPosition = "0px " + middle + "px";
-
-      console.log(middle);
 
       for (var i = 0; i < arrLines.length; i++) {
         var curLine = arrLines[i];
