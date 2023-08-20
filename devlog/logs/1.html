@@ -1,7 +1,7 @@
 <div>
     <div style="margin-left: 15%">
         <h1>Let's Get Caught Up</h1>
-        <h2>8/6/2023</h2>
+        <h2>8/20/2023</h2>
     </div>
 
     <div class ="flexbox">
@@ -10,79 +10,116 @@
             <p>Hello World!</p>
             <p>
             During the 2023 Playdate Developer Lunch, Neven Mrgan told me I should make a devlog for Diora.
-            He was absolutely right, but I haven't really known how I wanted to, until now.
-            So for this first log I'd like to cover a brief history of Diora up to the present.
+            I am finally ready, and I hope this will be interesting to Devs as well as people interested in Diora.
+            Since it is almost exactly a year since I started the project, I'd like to cover a brief history of Diora up to the present.
             </p>
-        </div>
-    
-        <div class="flexsection" style="flex: 1;">
-            <img src="pics/meetup.png" class="rounded" style="width: 100%;">
-        </div>
-    
-    </div>
-
-    <br>
-
-    <div class ="flexbox">
-    
-        <div class="flexsection" style="flex: 2; text-align: left;">
-            <p>
-                In 2022, while working on Voyage (rip) and Pool (not rip), I had an idea for essentially what Diora is.
-                I imagined a game made on a 3d grid made of blocks, where you can rotate the environment using the Playdate crank.
-                The idea was inspired by many games I enjoyed, such as <i>Monument Valley</i> and <i>Toad's Treasure Tracker</i>.
-                These games can still be seen in some art and design aspects of the game.
-            </p>
-            <p>
-                This idea floated around in my head for months, but I couldn't wrap my head around how it would be possible on the Playdate.
-                The biggest roadblock would be correctly handling the rendering logic of blocks and keeping it optimized enough to run at 30 FPS.
-            </p>
-
-            <p>
-                As all great ideas, It came to me at my computer.
-                I had my eureka moment and spent most of the day convincing myself it would be possible to pull off.
-                Slowly, I was able to comb through each issue that came up and create the first demo.
-            </p>
-
-        </div>
-    
-        <div class="flexsection" style="flex: 1;">
-            <img src="pics/mv.png" class="rounded" style="width: 40%;">
-        </div>
-    
-    </div>
-
-    <br>
-
-    <div class ="flexbox">
-    
-        <div class="flexsection" style="flex: 2; text-align: left;">
-            <p>
-                This first demo, which I posted on twitter on 8/22/2022, was 2 days after started working on it.
-                I will cover the rendering engine in more detail on one of the next devlogs, however, I will cover basics here.
-                Diora uses pre-rendered blocks in image tables, rendered in order of the block objects, in a list.
-                This list is sorted in order from farthest to closest to the camera.
-                This means the blocks can be drawn in order of the list, allowing for convincing depth!
-            </p>
-
-            <p>
-                I was really excited that my experiment worked, but it barely ran at 30 FPS on the Playdate with around 20 blocks.
-                I have spent alot of development time on optimizations, which will also be expanded on in another post.
-            </p>
-
         </div>
     
         <div class="flexsection" style="flex: 2;">
-            <img src="pics/first.gif" class="rounded" >
+            <img src="pics/meetup.png" class="rounded" style="width: 100%;">
+            <p>Which one is me? Guess you had to be there.</p>
         </div>
     
     </div>
 
-    <div class ="section" style="text-align: left;">
-        <p>
-            I have spent the last few months working hard on Diora, and I am making good progress. No release window just yet.
-            I am a full time college student and software intern after all!
-            Anyway, I hope these aren't too boring, and thank you to everyone who supports me, It's great to be a part of this community, really.
-        </p>
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1;">
+            <p>
+                In 2022 while working on Voyage (rip) and Pool, I had imagined a game that consisted of exploring small worlds contained within jars.
+                This original idea has morphed over time into what Diora is now, but some aspects of it are still there.
+                I imagined these worlds on a 3D grid made of blocks, where you can rotate the environment using the Playdate crank.
+                The idea was inspired by many games I enjoyed, Including <i>Monument Valley</i> and <i>Toad's Treasure Tracker</i>.
+                Some art and design aspects came from these games that I enjoyed.
+                This idea stayed with me but I couldn't wrap my head around how it would be possible on the Playdate.
+                I was content in thinking that it was impossible, or at least too resource intensive to run on Playdate hardware.
+            </p>
+        </div>
+    
+    </div>
+    
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 3;">
+            <img src="pics/diorajar.png" class="rounded" style="width: 80%;">
+            <p>Old Diora Art (9/30/2022)</p>
+        </div>
+
+        <div class="flexsection" style="flex: 1;">
+            <img src="pics/mv.png" class="rounded" style="width: 80%;">
+            <p>Monument Valley</p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1;">
+            <img src="pics/vector.png" class="rounded" style="width: 80%;">
+            <p>Vector (old project)</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                I had my aha moment almost exactly a year ago, on 8/18/2022.
+                I don't remember where I was when I had my aha moment but I was probably at my computer.
+                When I did, I was quickly able to convince myself it would be possible to pull off, finally realizing how to handle the rendering and data.
+                I was excited and spent 4 days programming the rendering logic and a rudimentary editor, and made my first post of Diora's engine.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1;">
+            <img src="pics/first.gif" class="rounded" >
+            <p>First Diora Footage (8/22/2022)</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                Diora uses pre-rendered blocks stored in large image tables, which are rendered using a list of blocks.
+                This list is sorted by distance of each block to the camera.
+                This means the blocks can be drawn in order of the list to avoid a depth buffer.
+                The blocks are drawn at the correct point on screen, using a custom algorithm I made to be as fast as possible.
+                Don't worry, I will cover the rendering engine in more detail in a future log.
+            </p>
+
+            <p>
+                I was really excited that it worked, however, it barely ran at 30 FPS on the Playdate with around 20 blocks.
+                I have spent a large amount of development time on optimizations, allowing for the game to run at a much better FPS with much higher block counts.
+                Optimizations will also be expanded on in a future log.
+            </p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 2; text-align: left;">
+            <p>
+                I have spent the last year working hard on Diora whenever I can, and I am making good progress.
+                No release window to announce just yet, I am a full time college student and intern after all.
+                I hope these are interesting, and thank you to everyone who supports me, It's great to be a part of this community, really.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1;">
+            <img src="pics/blockmash.png" class="rounded" style="width: 50%">
+            <p>isocubesheet.blend</p>
+        </div>
+    
     </div>
 
     <br>
