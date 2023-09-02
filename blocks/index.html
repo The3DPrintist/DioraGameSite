@@ -16,7 +16,7 @@
 
 <body>
 
-  <div style="margin-left: 15%">
+  <div class="margin">
     <h1>Block Library</h1>
     <p>Almost every block you can use. Some block are removed to avoid spoilers!</p>
     <p>Use <code onclick="copyinner(this)">loadblock("block")</code> to load a block by name</p>
@@ -24,8 +24,6 @@
   </div>
 
   <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
-
-  <img src="../art/house.png" id="midimg" style="position: float; float: right; overflow: visible;">
 
   <script>
     function copyinner(element){
@@ -53,9 +51,6 @@
 
       count = arrLines.length;
 
-      let middle = Math.floor(count/2) * 64;
-      document.getElementById("midimg").style.objectPosition = "0px " + middle + "px";
-
       for (var i = 0; i < arrLines.length; i++) {
         var curLine = arrLines[i];
         var entries = curLine.split(",");
@@ -78,6 +73,12 @@
     <td><h2>Name</h2></td>
     <td><h2>Info</h2></td>
   </table>
+
+  <div class="margin">
+    <a href="#top">
+      <button type="submit" class="btn btn-outline-light">▲</button>
+    </a>
+  </div>
 
   <div style="text-align: center;">
     <img src="../art/footer.png" style="margin-left: auto; margin-right: auto;" >

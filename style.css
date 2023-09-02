@@ -70,7 +70,6 @@ table{
     margin-top: 16px;
     margin-bottom: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
-    transform-origin: 50% 0% 0px;
     clip-path: polygon(
       0 8px,
       14px 0,
@@ -112,18 +111,6 @@ select{
     border-radius: 8px;
 }
 
-.sectionold {
-    background: #1E1E1E;
-    text-align: center;
-    border-radius: 16px;
-    padding: 10px;
-    margin: 15%;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    box-shadow:  5px 5px 8px #0e0e0e;
-    transform-origin: 50% 0% 0px;
-}
-
 .section {
     background: #1E1E1E;
     text-align: center;
@@ -132,7 +119,6 @@ select{
     margin-top: 16px;
     margin-bottom: 16px;
     box-shadow:  5px 5px 8px #0e0e0e;
-    transform-origin: 50% 0% 0px;
     position:relative;
     overflow:visible;
     clip-path: polygon(
@@ -146,7 +132,13 @@ select{
       0% calc(100% - 8px),
       0% 8px
     )
-  }
+}
+
+.margin {
+    margin: 15%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
 
 .section-anim {
     animation-name: zoom3;
@@ -166,8 +158,8 @@ select{
     background: #1E1E1E;
     text-align: center;
     box-shadow:  5px 5px 8px #0e0e0e;
-    transform-origin: 50% 0% 0px;
     padding: 10px;
+    text-align: left;
     clip-path: polygon(
       0 8px,
       14px 0,
@@ -179,6 +171,33 @@ select{
       0% calc(100% - 8px),
       0% 8px
     )
+}
+
+@media (max-aspect-ratio: 1) {
+    .section{
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .flexbox {
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .margin {
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    table {
+        margin: 5%;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
 }
 
 ::-webkit-scrollbar {
@@ -198,41 +217,6 @@ select{
     background: #555; 
 }
 
-@keyframes zoom {
-    from {
-    transform: scale(0,0);
-    }
-    to {
-    transform: scale(1,1);
-    }
-}
-
-@keyframes zoom2 {
-    from {
-    transform: perspective(1920px) rotateX(-90deg);
-    }
-    to {
-    transform: perspective(1920px) rotateX(0deg);
-    }
-}
-
-@keyframes zoom3 {
-    from {
-    transform: scale(1,0);
-    }
-    to {
-    transform: scale(1,1);
-    }
-}
-
-/*.btn{
-    background-color: #f8f9fa;
-    color: #1E1E1E;
-    padding: 8px;
-    border-radius: 8px;
-    font-family: Lato;
-    margin: 4px;
-}*/
 .btn{
     border-radius: 8px;
 }

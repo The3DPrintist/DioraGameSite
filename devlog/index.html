@@ -16,7 +16,7 @@
 
 <body>
 
-  <div style="margin-left: 15%">
+  <div class="margin">
     <h1>Devlog</h1>
     <p>No schedule, no problem.</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
@@ -25,14 +25,13 @@
   <div class="section">
     <form>
       <label for="log">Choose a log:</label>
-      <select name="log" id="logselect" onchange="changelog()">
+      <select name="log" id="logselect" onchange="changeLog()">
         <option value="none">None</option>
         <option value="1">Let's Get Caught Up</option>
+        <option value="2">Inspirama</option>
       </select>
     </form>
   </div>
-
-  <iframe id="frmFile" src = "logs/none.html" onload="loadlog();" style="display: none;"></iframe>
 
   <div id="logsection">
   </div>
@@ -40,25 +39,6 @@
   <br>
 
   <script type="text/javascript">
-
-    function changelog(){
-      var oFrame = document.getElementById("frmFile");
-      var section = document.getElementById("logsection");
-      var select = document.getElementById("logselect");
-
-      section.innerHTML = "";
-      oFrame.src = "logs/" + select.value + ".html";
-    }
-
-    function loadlog() {
-      var oFrame = document.getElementById("frmFile");
-      var section = document.getElementById("logsection");
-      var select = document.getElementById("logselect");
-
-      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-
-      section.innerHTML = strRawContents;
-    }
 
     function getQueryVariable(variable){
       var query = window.location.search.substring(1);
@@ -70,17 +50,31 @@
       return(false);
     }
 
-    function selectLog(valueToSelect) {    
-      let element = document.getElementById("logselect");
-      element.value = valueToSelect;
-      changelog()
+    function changeLog() {
+      var select = document.getElementById("logselect");
+      var section = document.getElementById("logsection");
+
+      fetch("logs/" + select.value + ".html")
+        .then(response => response.text())
+        .then((data) => {
+        section.innerHTML = data;
+      })
+    }
+
+    function selectLog(selection) {    
+      let select = document.getElementById("logselect");
+      select.value = selection;
+
+      changeLog()
     }
     
-    let logparam = getQueryVariable("log")
-    if(logparam){
+    let urllog = getQueryVariable("log")
+    if(urllog){
       console.log("loading param from url")
 
-      selectLog(logparam)
+      selectLog(urllog)
+    }else{
+      selectLog("none")
     }
 
   </script>
