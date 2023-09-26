@@ -1,0 +1,227 @@
+<div>
+    <div class="margin">
+        <h1>Engine</h1>
+        <h2>9/25/2023</h2>
+    </div>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                I have been looking forward to this devlog, as many people have asked how I made Diora.
+                The concepts that make the engine work are very cool and could be expanded to many other projects, so I hope that people find it interesting.
+                Diora is a very integrated system, so I can't cover how everything works, but I will cover the basics.
+                These steps are organized in the order of which I developed them, and will cover the steps I took updating the engine to how it is now.
+            </p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                Diora started out as a single block floating in the void.
+                Each block is a huge 180 frame Playdate image table.
+                I create the block in Blender, render each 2° increment out to a folder of PNGs.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/blender.gif" class="rounded" style="width: 100%;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                Using some web tools, the images can be dithered and then combined into a line.
+                This used to be done with third party tools, but eventually were remade from scratch for this website!
+                I am hoping that the tools can be used by the community to make assets for custom levels.
+                I am planning to make a suite of tools and template assets that can be used for this purpose.
+            </p>
+            <div style="text-align: center;">
+                <a href="../tool" target=”_blank” class="btn btn-outline-light" role="button">Block Table Tool</a>
+                <a href="../blocks" target=”_blank” class="btn btn-outline-light" role="button">Block Library</a>
+            </div>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/webtool.gif" class="rounded" style="width: 100%;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                Now that the asset has been created, it can be drawn to the screen, using bare-bones code that uses the crank to pick which frame to render.
+                These blocks would use a lot of memory, luckily, the Playdate is the perfect console for this engine.
+                Since Playdate assets are 1 bit, they are very space efficient compared to even a greyscale image.
+                An image before building that is 3.25 Kilobytes, is just 217 Bytes after Building, thats 6.7% of the original!
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/oneblock.gif" class="rounded" style="width: 100%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                This is the part that took the most amount of time to get right, and there was a lot of math.
+                I knew that I needed to offset the block drawing position based on the position and rotation of the camera.
+                The normal way to calculate this position would require unique trig operations for every block, so I knew I needed a better way.
+                To do this I decided to calculate the position based off a 0° camera angle, and then rotate that position around the origin.
+                This formula has the extremely helpful benefit of only needing one sine and cosine value calculated for the entire frame!
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/rotpoint.png" style="width: 80%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                The formula needed to be tweaked to account for the size of the block in pixels for rise (29 px), and run (25 px).
+                The screen y position can be multiplied by the constant (0.5771) to account for the camera angle, and there!
+                The block can now be rendered in 3d space.
+                The engine was never never tested with a different algorithm, but I imagine the efficiency of this method contributes to Diora's performance.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/rotpoint.gif" class="rounded" style="width: 100%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                Now that it can render in 3D, it can be expanded to draw multiple blocks using a table!
+                Each block has an x, y, z, and r value that determines where it is in 3D.
+                We can draw the block in order of the table, but when we rotate the camera, blocks will render out of order!
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/nosort.gif" class="rounded" style="width: 100%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>          
+                Since we cant afford to use a depth buffer, we can sort the block table by their distance to the 'camera'.
+                This is called the <i>Painter's algorithm</i>, named after how layers of paint stack on a canvas.
+                The camera technically doesn't exist, but we pretend that it has a 3d position far away from the origin.
+                Originally, I tried running <i>n</i> steps of a simple sorting algorithm each frame, since doing the full sort every frame was too much.
+                This was the point where I made my first post of Diora, but it had room for improvement.
+                This method left artifacts and was not efficient, so something needed to be done.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/sort.gif" class="rounded" style="width: 100%; max-width: 400px;">
+            <p>Posted on Twitter (9/1/2022)</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>          
+                You may have noticed in the example without sorting that it looked ok until the camera was turned past a certain point.
+                Eventually I realized that between the 90° increments, no sorting needs to be done.
+                By only sorting if the camera leaves that 90° zone, it sorts the table much less.
+                With this method, the engine was finally able to run with an acceptable amount of blocks.
+                This is paired with a binary search insert for moving blocks, such as the Player.
+                The new method wasn't the only optimization, but it was the most impactful by far.
+                There were many other ways that Diora has been optimized since then, and I'd like the cover them in a future devlog.
+            </p>
+        </div>
+    
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <img src="pics/engine.gif" class="rounded" style="width: 100%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 1; text-align: center;">
+            <p>          
+                The engine is working, and should hopefully be performant!
+            </p>
+            <img src="pics/working.gif" class="rounded" style="width: 100%; max-width: 400px;">
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+
+        <div class="flexsection" style="flex: 3; text-align: left;">
+            <p>
+                It is starting to be a tradition for this section to be used to mention something I managed to completely forget in the last devlog.
+            </p>
+            <p>
+                In that subject, I have started a habit of collecting print media from events in my life that mean a lot to me.
+                These are usually unremarkable things from shows, conventions, and my internships.
+                I even have the packing slip from when I received my Playdate!
+            </p>
+            <p>
+                When I flew the to the 2023 Playdate Developer Lunch I only had a backpack with me, but I was able to get the check-in foamcore folded up into my backpack and brought home with me.
+                I have it leaning up against the wall near my desk, and it is a nice reminder of how great that trip was.
+            </p>
+            <p>
+                Thats is all for now,
+                Thank you!
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 2; text-align: center;">
+            <img src="pics/poster.jpg" class="rounded" style="width: 80%;">
+            <p>On the way home (3/21/2023)</p>
+            <img src="pics/three.jpg" class="rounded" style="width: 80%;">
+            <p>2023 Playdate Developer Lunch (3/21/2023)</p>
+            <p>Letting people try Diora for the first time was cool, It only crashed twice!</p>
+        </div>
+    
+    </div>
+
+</div>
