@@ -31,77 +31,61 @@ let tilew = 0;
 let tileh = 0;
 
 input.addEventListener("change", () => {
-    const files = input.files
+    const files = input.files;
     for (let i = 0; i < files.length; i++) {
-        imagesArray.push(files[i])
+        imagesArray.push(files[i]);
     }
-    displayImages()
+    displayImages();
 })
-
-/*(inputDiv.addEventListener("drop", () => {
-    if(e == null){
-        return
-    }
-
-    e.preventDefault()
-    const files = e.dataTransfer.files
-    for (let i = 0; i < files.length; i++) {
-        if (!files[i].type.match("image")) continue;
-
-        if (imagesArray.every(image => image.name !== files[i].name))
-        imagesArray.push(files[i])
-    }
-    displayImages()
-})*/
 
 function displayImages() {
 
-    clearwarn()
+    clearwarn();
 
-    let images = ""
+    let images = "";
 
-    animlen = imagesArray.length
+    animlen = imagesArray.length;
 
-    images += `<p>Loaded ${animlen} images</p>`
+    images += `<p>Loaded ${animlen} images</p>`;
 
     let img = document.createElement('img');
-    let iw = 0
-    let ih = 0
+    let iw = 0;
+    let ih = 0;
 
     img.src = URL.createObjectURL(imagesArray[0]);
 
     img.onload = function(){
-        iw = img.width
-        ih = img.height
+        iw = img.width;
+        ih = img.height;
 
         tilew = iw;
         tileh = ih;
 
-        tablectx.canvas.width = iw * animlen
-        tablectx.canvas.height = ih
+        tablectx.canvas.width = iw * animlen;
+        tablectx.canvas.height = ih;
 
-        rotctx.canvas.width = iw
-        rotctx.canvas.height = ih
+        rotctx.canvas.width = iw;
+        rotctx.canvas.height = ih;
 
         if(iw == 64 && ih == 64){
-            addstat ("📐", iw + "x" + ih)
+            addstat ("📐", iw + "x" + ih);
         }else{
-            addwarn ("Image size (" + iw + "x" + ih + ") may not be correct.")
+            addwarn ("Image size (" + iw + "x" + ih + ") may be bad.");
         }
 
         if(animlen%45 == 0 || animlen == 1){
-            addstat ("#️⃣", animlen)
+            addstat ("#️⃣", animlen);
         }else{
-            addwarn ("Image count (" + animlen + ") may not be correct.")
+            addwarn ("Image count (" + animlen + ") may be bad.");
         }
 
     }
 
+    console.log("draw");
     for (let i = 0; i < animlen; i++) {
         let sprite = document.createElement('img');
         sprite.src = URL.createObjectURL(imagesArray[i]);
         sprite.onload = function(){
-            console.log("draw");
             tablectx.drawImage(sprite,i*iw,0);
         }
     }
@@ -109,29 +93,12 @@ function displayImages() {
 }
 
 function deleteImage(index) {
-    imagesArray.splice(index, imagesArray.length)
-    displayImages()
+    imagesArray.splice(index, imagesArray.length);
+    displayImages();
 }
 
-function clearall(){
-    console.log("clear all");
-    imagesArray = [];
-    animlen = 0;
-    animid = 0;
-
-    tablectx.canvas.width = 64;
-    tablectx.canvas.height = 64;
-
-    rotctx.canvas.width = 64;
-    rotctx.canvas.height = 64;
-
-    tablectx.clearRect(0, 0, tablectx.canvas.width, tablectx.canvas.height);
-    rotctx.clearRect(0, 0, rotctx.canvas.width, rotctx.canvas.height);
-
-    tablectx.drawImage(image, 0, 0);
-    rotctx.drawImage(image, 0, 0);
-
-    clearwarn();
+function reload(){
+    location.reload();
 }
 
 function dltable(){
@@ -180,17 +147,16 @@ async function dither(idx){
     let blobcanvas = document.createElement("canvas");
     let bctx = blobcanvas.getContext("2d");
 
-    createImageBitmap(imagesArray[idx]).then(imgbm=>{
-        //console.log("1: " + imageBitmap.width + "," + imageBitmap.height)
-        bctx.canvas.width = imgbm.width;
-        bctx.canvas.height = imgbm.height;
+    createImageBitmap(imagesArray[idx]).then(bitmap=>{
+        bctx.canvas.width = bitmap.width;
+        bctx.canvas.height = bitmap.height;
 
         bctx.clearRect(0, 0, bctx.canvas.width, bctx.canvas.height);
-        bctx.drawImage(imgbm,0,0)
+        bctx.drawImage(bitmap,0,0)
 
-        let dither = [[16/17,  8/17, 14/17,  6/17], [ 4/17, 12/17,  2/17, 10/17], [13/17,  5/17, 15/17,  7/17], [ 1/17,  9/17,  3/17, 11/17]];
-        let dw = dither[0].length;
-        let dh = dither.length;
+        let ditherdata = [[16/17,  8/17, 14/17,  6/17], [ 4/17, 12/17,  2/17, 10/17], [13/17,  5/17, 15/17,  7/17], [ 1/17,  9/17,  3/17, 11/17]];
+        let dw = ditherdata[0].length;
+        let dh = ditherdata.length;
 
         let w = [0xb1, 0xae, 0xa8];
         let b = [0x32, 0x2f, 0x29];
@@ -201,14 +167,16 @@ async function dither(idx){
         let power = document.getElementById("power").value;
         let data = bctx.getImageData(0,0,cw,ch);
 
-        let i=0, val;
+        let i=0;
+        let val = 0;
 
-        for (let y = 0; y < cw; y++) {
-            for (let x = 0; x < ch; x++, i += 4) {
-                val = value(data.data, i);
+        for (let x = 0; x < ch; x++) {
+            for (let y = 0; y < cw; y++) {
+                i += 4;
+                val = dithervalue(data.data, i);
                 val = Math.pow(val, power);
 
-                if(val > dither[y%dh][x%dw]){
+                if(val > ditherdata[y%dh][x%dw]){
                     setpx(data.data, i, w)
                 }else{
                     setpx(data.data, i, b)
@@ -221,7 +189,6 @@ async function dither(idx){
         let dithered = dataURItoBlob(blobcanvas.toDataURL());
 
         imagesArray[idx] = new File([dithered], idx, { type: "image/png", });
-        //imagesArray[idx] = dithered;
 
         rendercount += 1;
 
@@ -248,8 +215,8 @@ function ditherall(){
 
 function waitanddisplay(){
     if(rendercount != imagesArray.length) {
-        window.setTimeout(waitanddisplay, 100); /* this checks the flag every 100 milliseconds*/
-        console.log("waiting");
+        //check the flag every 100 milliseconds
+        window.setTimeout(waitanddisplay, 100);
     } else {
         displayImages();
     }
@@ -276,7 +243,7 @@ function dataURItoBlob(dataURI) {
 }
 
 //L* (D65/2°)
-function value(data,i){
+function dithervalue(data,i){
     let r,g,b;
 
     r = data[i];
@@ -317,7 +284,7 @@ function animupdate(timeStamp) {
 
     const elapsed = timeStamp - start;
 
-    if(animlen != 0 && elapsed > 10){
+    if(animlen != 0 && elapsed > 15){
 
         createImageBitmap(imagesArray[animid]).then(imageBitmap=>{
             rotctx.clearRect(0, 0, rotctx.canvas.width, rotctx.canvas.height);
