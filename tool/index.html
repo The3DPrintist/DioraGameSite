@@ -41,7 +41,7 @@
 <div class="section">
   <div>
     <label for="power">power curve:</label>
-    <input type="number" step="0.1" id="power" value="2" style = "width: 64px">
+    <input type="number" step="1" id="power" value="2" style = "width: 64px">
     <label for="blockname">name:</label>
     <input type="text" id="blockname" value="" placeholder="block">
   </div>
@@ -51,6 +51,11 @@
   <button class="btn btn-outline-light" onclick="ditherall()">Dither</button>
   <button class="btn btn-outline-light" onclick="reload()">Clear</button>
   <button class="btn btn-outline-light" onclick="dltable()">Download</button>
+  <button class="btn btn-outline-light" onclick="dltablenoname()">Download w/o Table Name</button>
+</div>
+
+<div style="margin-left: 15%">
+  <p>Need a dithering tool with more features? try <a href="https://kaasiand.cool/oven/" target="_blank">kaasiand.cool/oven</a></p>
 </div>
 
 <script type="text/javascript" src="tool.js"></script>

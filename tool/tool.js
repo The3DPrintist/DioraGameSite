@@ -106,6 +106,11 @@ function dltable(){
     download(tablecanvas, document.getElementById("blockname").value + "-table-" + tilew + "-" + tileh + ".png")
 }
 
+function dltablenoname(){
+    console.log("download canvas");
+    download(tablecanvas, document.getElementById("blockname").value + ".png")
+}
+
 function download(canvas, filename) {
     /// create an "off-screen" anchor tag
     var lnk = document.createElement('a'), e;
@@ -284,7 +289,7 @@ function animupdate(timeStamp) {
 
     const elapsed = timeStamp - start;
 
-    if(animlen != 0 && elapsed > 15){
+    if(animlen != 0 && elapsed >= 33){
 
         createImageBitmap(imagesArray[animid]).then(imageBitmap=>{
             rotctx.clearRect(0, 0, rotctx.canvas.width, rotctx.canvas.height);
