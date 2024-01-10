@@ -42,11 +42,7 @@ function displayImages() {
 
     clearwarn();
 
-    let images = "";
-
     animlen = imagesArray.length;
-
-    images += `<p>Loaded ${animlen} images</p>`;
 
     let img = document.createElement('img');
     let iw = 0;
@@ -64,10 +60,35 @@ function displayImages() {
         tablectx.canvas.width = iw * animlen;
         tablectx.canvas.height = ih;
 
+        let stack = 0
+
+        
+        if(animlen % 2 == 0){
+            tablectx.canvas.width = iw * (animlen/2);
+            tablectx.canvas.height = ih * 2;
+            stack = 2;
+        }
+
+        if(animlen % 3 == 0){
+            tablectx.canvas.width = iw * (animlen/3);
+            tablectx.canvas.height = ih * 3;
+            stack = 3;
+        }
+
+        if(animlen % 4 == 0){
+            tablectx.canvas.width = iw * (animlen/4);
+            tablectx.canvas.height = ih * 4;
+            stack = 4;
+        }
+
+        if(stack != 0){
+            addstat("🔠", "Stacking " + stack + " times for file size.")
+        }
+
         rotctx.canvas.width = iw;
         rotctx.canvas.height = ih;
 
-        if(iw == 64 && ih == 64){
+        if((iw == 64 && ih == 64) || (iw == 400 && ih == 240)){
             addstat ("📐", iw + "x" + ih);
         }else{
             addwarn ("Image size (" + iw + "x" + ih + ") may be bad.");
@@ -85,8 +106,23 @@ function displayImages() {
     for (let i = 0; i < animlen; i++) {
         let sprite = document.createElement('img');
         sprite.src = URL.createObjectURL(imagesArray[i]);
+
         sprite.onload = function(){
-            tablectx.drawImage(sprite,i*iw,0);
+            // let x = 0;
+            // let y = 0;
+
+            // for (let j = 0; j < i; j++) {
+            //     x += iw;
+            //     if(x >= tablectx.canvas.width){
+            //         y += ih;
+            //         x = 0;
+            //     }
+            // }
+
+            let x = (i * iw) % tablectx.canvas.width;
+            let y = Math.floor((i * iw) / tablectx.canvas.width) * ih;
+            
+            tablectx.drawImage(sprite,x,y);
         }
     }
 
