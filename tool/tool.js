@@ -62,7 +62,6 @@ function displayImages() {
 
         let stack = 0
 
-        
         if(animlen % 2 == 0){
             tablectx.canvas.width = iw * (animlen/2);
             tablectx.canvas.height = ih * 2;
@@ -82,7 +81,7 @@ function displayImages() {
         }
 
         if(stack != 0){
-            addstat("🔠", "Stacking " + stack + " times for file size.")
+            addstat("🔠", "Stacking " + stack + " times for convenience.") //doesn't change file size lol
         }
 
         rotctx.canvas.width = iw;
@@ -108,16 +107,6 @@ function displayImages() {
         sprite.src = URL.createObjectURL(imagesArray[i]);
 
         sprite.onload = function(){
-            // let x = 0;
-            // let y = 0;
-
-            // for (let j = 0; j < i; j++) {
-            //     x += iw;
-            //     if(x >= tablectx.canvas.width){
-            //         y += ih;
-            //         x = 0;
-            //     }
-            // }
 
             let x = (i * iw) % tablectx.canvas.width;
             let y = Math.floor((i * iw) / tablectx.canvas.width) * ih;
