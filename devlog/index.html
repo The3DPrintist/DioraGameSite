@@ -10,7 +10,8 @@
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="../style.css">
+<link href="../style.css" rel="stylesheet">
+<link href="themes/prism.css" rel="stylesheet" />
 <title>Diora Devlog</title>
 </head>
 
@@ -30,6 +31,7 @@
         <option value="1">Let's Get Caught Up</option>
         <option value="2">Inspirama</option>
         <option value="3">The Diorama Engine</option>
+        <option value="4">Rules 3 -> n</option>
       </select>
     </form>
   </div>
@@ -43,6 +45,8 @@
 
   <br>
 
+  <script src="prism.js"></script>
+
   <script type="text/javascript">
 
     function getQueryVariable(variable){
@@ -55,6 +59,13 @@
       return(false);
     }
 
+    function selectLog(selection) {    
+      let select = document.getElementById("logselect");
+      select.value = selection;
+
+      changeLog()
+    }
+
     function changeLog() {
       var select = document.getElementById("logselect");
       var section = document.getElementById("logsection");
@@ -63,16 +74,16 @@
         .then(response => response.text())
         .then((data) => {
         section.innerHTML = data;
+        reHightlight();
       })
+
     }
 
-    function selectLog(selection) {    
-      let select = document.getElementById("logselect");
-      select.value = selection;
-
-      changeLog()
+    function reHightlight(){
+      Prism.highlightAll();
     }
     
+    //load from url query
     let urllog = getQueryVariable("log")
     if(urllog){
       console.log("loading param from url")

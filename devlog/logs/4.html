@@ -1,14 +1,282 @@
 <div>
     <div class="margin">
-        <h1>Rule 2 Through n</h1>
-        <h2>1/23/2024</h2>
+        <h1>Rules 3 -> n</h1>
+        <h2>1/30/2024</h2>
     </div>
 
     <div class ="flexbox">
     
         <div class="flexsection" style="flex: 1; text-align: left;">
+            <div style="width: 75%; text-align: center;" >
+                <p>
+                    "In Lua, as in any other programming language, we should always follow the two maxims of program optimization:
+                </p>
+                <p>
+                    Rule #1: Don't do it.
+                </p>
+                <p>
+                    Rule #2: Don't do it yet. (for experts only)"
+                </p>
+                <p style="text-align: right">- Roberto Ierusalimschy, <cite>Lua Performance Tips</cite></p>
+            </div>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <div style="width: 75%; text-align: center;" >
+                <p>
+                    "how bout i do anyway?"
+                </p>
+                <p style="text-align: right">- Bill Wurtz, <cite>history of japan</cite></p>
+            </div>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
             <p>
-                
+                While working on Diora, I have spent a ton of development time <i>cranking</i> out as much performance as possible.
+                Luckily, it seems like it is finally efficient enough to run at a good FPS!
+            </p>
+            <p>
+                For this devlog I will be covering some general Lua optimization tips, then some Playdate optimization tips, and finally some Diorama Engine improvements.
+                I imagine some of these are common knowledge, but they could greatly improve performance of a Playdate game!
+            </p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Declare Locals Early
+            </h2>
+            <p>
+                Starting off with a relatively obvious tip, declaring locals outside of loops can be used as a slight optimization, since it doesn't need to be reallocated every loop.
+                While this may be very subtle in most applications, this is extremely important in the drawgame() function in the Diorama Engine.
+                There are currently 8 local variables that get allocated before the loop as nothing, and get set every loop.
+            </p>
+            <h2>
+                Make Local Copies of Globals
+            </h2>
+            <p>
+                Diora has 13 other locals in the drawgame() function that are used to make local copies of global variables.
+                This is also a subtle change that becomes very important in the engine, as finding a global variable is expensive.
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>Fine:</p>
+            <pre><code class="language-lua">
+for i=1, #blocks do
+    local block = blocks[i]
+    block.x += offset
+end
+            </code></pre>
+            <p>Better:</p>
+            <pre><code class="language-lua">
+local block
+local blocks = blocks
+local offset = offset
+
+for i=1, #blocks do
+    block = blocks[i]
+    block.x += offset
+end
+            </code></pre>
+            <p>In testing, this code was 29% faster.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Don't use ipairs()
+            </h2>
+            <p>
+                In Lua, ipairs() is a convenient way to loop through a list.
+                Unfortunately, the consensus is that it can be much less efficient then a simple loop.
+                However, pairs() can still be useful, as it can be used to iterate through string indexed tables or sparse tables.
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>Fine:</p>
+            <pre><code class="language-lua">
+local blocks = blocks
+local offset = offset
+
+for i,block in ipairs(blocks) do
+    block.x += offset
+end
+            </code></pre>
+            <p>Better:</p>
+            <pre><code class="language-lua">
+local block
+local blocks = blocks
+local offset = offset
+
+for i=1, #blocks do
+    block = blocks[i]
+    block.x += offset
+end
+            </code></pre>
+            <p>In testing, this code was 43% faster.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Removing Functions
+            </h2>
+            <p>
+                One of the most annoying improvements to the engine is replacing functions with copies of the code inside of them.
+                The game currently has around 4 very similar blocks of code that all draw blocks to the screen.
+                The purpose of this is to avoid calling extra functions during the draw loop, as every function call introduces unnecessary processing to handle the stack.
+                While removing functions and replacing them with repeated blocks of code can improve performance, please use this sparingly, as it ruins readability and edibility.
+                You may be able to use code macros to make updating the duplicate code easier though.
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>Fine:</p>
+            <pre><code class="language-lua">
+function offsetx(block,o)
+    block.x += o
+end
+
+local block
+local blocks = blocks
+local offset = offset
+
+for i=1, #blocks do
+    block = blocks[i]
+    offsetx(block,offset)
+end
+            </code></pre>
+            <p>Better:</p>
+            <pre><code class="language-lua">
+local block
+local blocks = blocks
+local offset = offset
+
+for i=1, #blocks do
+    block = blocks[i]
+    block.x += offset
+end
+            </code></pre>
+            <p>In testing, this code was 86% faster.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Sprites VS Draw
+            </h2>
+            <p>
+                In the SDK, there is a sprite system that handles the ordering and rendering of individual sprites.
+                I initially assumed that creating the same static scene would show that using playdate.graphics.image:draw() would be faster, however it showed the opposite.
+                I still personally have never used the sprites system for a game, and am unsure if it would help Diora.
+                To support all of the features of the Diorama engine I believe that it would end up being slower due to ordering, setting position, and custom drawing functions that certain blocks support.
+                For this reason, I generally would avoid using the sprite system unless your project follows the exact capabilities of the sprites.
+                Or maybe im just close-minded, it was faster after all!
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <img src="pics/spritestest.png" class="rounded" style="width: 100%; max-width: 400px;">
+            <p>In testing, using sprites was 14% faster.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Diora Optimization 1: Frustum Culling
+            </h2>
+            <p>
+                Early in Diora development, I discovered that checking if the block was going to be on screen before drawing it would give a significant performance improvement.
+                After testing, I have decided that this is because the process of drawing still takes significant processing even if no pixels will be changed.
+                I believe this is mainly due to the code in the drawing function that calculates what range of pixels will need to be updated.
+                Even if the range includes no pixels, calculating that rectangle is unnecessary.
+                If your project has some limitation to where objects are drawn (in this case, only being above or below the screen), you can add a check before hand so save some performance.
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <img src="pics/frustumcull.gif" class="rounded" style="width: 100%; max-width: 400px;">
+            <p>Frustum culling, with range artificially lowered.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <h2>
+                Diora Optimization 2: Distance Culling
+            </h2>
+            <p>
+                The Frustum culling method helps with performance, but still requires the engine to calculate a screen position for the block.
+                If there was a very cheap way to not process blocks that are known to be off screen, It would allow the game to have very large levels.
+                To fix this, I developed a form of distance culling just on the Z axis.
+                When a culling request is made, the engine starts from each end of the block list, and finds the index of the first and last block that are within a certain distance to camera's z position.
+                The engine will only loop though this range of blocks, saving a huge amount of processing of offscreen blocks.
+                This improvement was  very important and is the most recent optimization to the engine.
+                Im glad that this worked, as all current levels comfortably run at 30 FPS!
+            </p>
+        </div>
+
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <img src="pics/distancecull.gif" class="rounded" style="width: 100%; max-width: 400px;">
+            <p>Distance culling, with reach artificially lowered.</p>
+        </div>
+    
+    </div>
+
+    <br>
+
+    <div class ="flexbox">
+    
+        <div class="flexsection" style="flex: 1; text-align: left;">
+            <p>
+                I hope that these are helpful, or at least interesting!
+                I may update this list as more changes are made to the Engine for future optimizations.
+            </p>
+            <p>
+                Thank you!
             </p>
         </div>
     
