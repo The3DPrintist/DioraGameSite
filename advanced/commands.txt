@@ -1,0 +1,6 @@
+actor,name,diora,Changes Bebe and Icon to match a character file.
+bebe,name,diora,Changes Bebe.
+icon,name,diora,Changes Icon.
+music,name,bauhaus_groove,Changes the music. Can also be 'none' to stop music.
+background,name,construct,Changes the background. Can also be 'void' for no background. 
+wait,seconds,4.5,Pauses the commands the defined amount of seconds. Triggers only.

@@ -1,1 +1,0 @@
-offsetblocks, 0 0 1, Used to offset all blocks in a scene.

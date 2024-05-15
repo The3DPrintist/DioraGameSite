@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="../style.css">
+<title>Diora Level Editing</title>
+</head>
+
+<body>
+
+  <div class="margin">
+    <h1>Advanced Level Editing</h1>
+    <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
+  </div>
+
+  <script>
+    function copyinner(element){
+      let code = element.innerHTML
+      console.log("copied "+code);
+      navigator.clipboard.writeText(code);
+    }
+  </script>
+
+  <!-- Dialogue Commands -->
+
+  <script type="text/javascript">
+    var count = 0;
+
+    function delay(){
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 1);
+    })
+    }
+
+    async function LoadFileCmd() {
+      var oFrame = document.getElementById("cmdfile");
+      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+      while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+      var arrLines = strRawContents.split("\n");
+
+      count = arrLines.length;
+
+      for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var entries = curLine.split(",");
+        
+        await addentrycmd(entries[0],entries[1],entries[2],entries[3]);
+      }
+    }
+
+    async function addentrycmd(name,labels,args,desc){
+      //await delay()
+      let td1 = '<td><h3>' + name + '</h3></td>';
+      let td2 = '<td><p>' + labels + '</p></td>';
+      let td3 = '<td><code onclick="copyinner(this)">' + "#" + name + " " + args + ' </code></td>';
+      let td4 = '<td><p>' + desc + '</p></td>';
+      document.getElementById('cmdtable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + td4 + "</tr>");
+    }
+  </script>
+
+  <iframe id="cmdfile" src="commands.txt" onload="LoadFileCmd();" style="display: none;"></iframe>
+
+  <div class="margin">
+    <h2>Dialogue Commands</h2>
+  </div>
+
+  <div class="section">
+    <p>These commands are used in dialogue and triggers. They can be used to make story and scripted events. Click the examples to copy to the clipboard.</p>
+  </div>
+
+  <table id="cmdtable">
+    <tbody>
+      <td><h2>Command</h2></td>
+      <td><h2>Args</h2></td>
+      <td><h2>Example</h2></td>
+      <td><h2>Description</h2></td>
+    </tbody>
+    <tbody>
+      <td><h3>dialogue</h3></td>
+      <td></td>
+      <td><code onclick="copyinner(this)">Hello World!</code></td>
+      <td><p>Base dialogue, no <code>#</code>. Cannot be used in triggers.</p></td>
+    </tbody>
+  </table>
+
+   <!-- Tool Commands -->
+
+  <script type="text/javascript">
+    var count = 0;
+
+    function delay(){
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 1);
+    })
+    }
+
+    async function LoadFileTool() {
+      var oFrame = document.getElementById("toolfile");
+      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+      while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+      var arrLines = strRawContents.split("\n");
+
+      count = arrLines.length;
+
+      for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var entries = curLine.split(",");
+        
+        await addentrytool(entries[0],entries[1],entries[2],entries[3]);
+      }
+    }
+
+    async function addentrytool(name,labels,args,desc){
+      //await delay()
+      let td1 = '<td><h3>' + name + '</h3></td>';
+      let td2 = '<td><p>' + labels + '</p></td>';
+      let td3 = '<td><code onclick="copyinner(this)">' + "!msg " + name + " " + args + ' </code></td>';
+      let td4 = '<td><p>' + desc + '</p></td>';
+      document.getElementById('tooltable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + td4 + "</tr>");
+    }
+  </script>
+
+  <iframe id="toolfile" src="tools.txt" onload="LoadFileTool();" style="display: none;"></iframe>
+
+  <div class="margin">
+    <h2>Tool Commands</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      These commands can help difficult tasks in the editor.
+      They are a must have when making a complicated level!
+      Connect the Playdate to the simulator and open the developer console to use.</p>
+  </div>
+
+  <table id="tooltable">
+    <tbody>
+      <td><h2>Command</h2></td>
+      <td><h2>Args</h2></td>
+      <td><h2>Example</h2></td>
+      <td><h2>Description</h2></td>
+    </tbody>
+  </table>
+
+  <div class="section">
+    <p>
+      These two groups of commands are intended for different purposes but are actually interchangeable!
+      Switch <code onclick="copyinner(this)">#</code> for <code onclick="copyinner(this)">!msg</code>, and vice versa.
+      This can be used to do some very complex effects!</p>
+  </div>
+
+  <div class="margin">
+    <h2>Custom Assets</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      Custom levels support many types of custom assets, this section will cover how to create your own assets!
+      The example project can be used to understand the file structure and features of custom assets.
+    </p>
+    <a href="./files/example.zip" download style="margin: 8px" class="btn btn-outline-light" role="button">Download example project</a>
+  </div>
+
+  <div class="section">
+    <h3>Blocks</h3>
+    <p>
+      Custom blocks require general knowledge of Blender.
+      Download the template file here.
+    </p>
+    <a href="files/block.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download block template</a>
+    <p>
+      After customizing the block, render the frames out to a folder.
+      Use the block table tool to convert to a single large png containing all of the dithered frames.
+    </p>
+
+    <p>By naming the custom block the same name as an existing block, you can replace the graphics of that block in the project.
+      This could be used in many ways, such as to create a unique art style, or replace Diora with a new character.</p>
+
+    <p>Some blocks may need custom functionality, this can be achieved with a block data file.</p>
+  </div>
+
+  <div class="section">
+    <h3>Backgrounds</h3>
+    <p>
+      Custom backgrounds require general knowledge of Blender.
+      Download the template file here.
+    </p>
+    <a href="files/background.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download background template</a>
+  </div>
+
+  <div class="section">
+    <h3>Music</h3>
+    <p>
+      Custom music can be used, convert to <code>ADPCM WAV</code>.
+      Music looping can be defined using a descriptor txt with the same name as the wav.
+      The txt contains the decimal seconds into the song where the music should resume at when it reaches the end.
+      See example project for the formatting of the descriptor.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Dialogue</h3>
+    <p>
+      See example project for location of dialogue files.
+    </p>
+  </div>
+
+  <div class="margin">
+    <a href="#top">
+      <button type="submit" class="btn btn-outline-light">▲</button>
+    </a>
+  </div>
+
+
+
+</body>
+</html>

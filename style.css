@@ -37,6 +37,11 @@ h2 {
     font-family: Lato
 }
 
+h3 {
+    color: #FFFFFF;
+    font-family: Lato
+}
+
 p {
     color: #FFFFFF;
     font-family: Lato;
@@ -100,6 +105,10 @@ code{
     white-space: nowrap;
     border-radius: 4px;
     cursor: pointer;
+}
+
+code:hover{
+    background-color: #313131;
 }
 
 select{

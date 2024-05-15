@@ -11,19 +11,18 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <link rel="stylesheet" href="../style.css">
-<title>Diora Block Library</title>
+<title>Diora Level Editing</title>
 </head>
 
 <body>
 
   <div class="margin">
     <h1>Level Editing</h1>
-    <p>Almost every block you can use. Some block are removed to avoid spoilers!</p>
-    <p>Use <code onclick="copyinner(this)">loadblock("block")</code> to load a block by name</p>
+    <p>Introduction to level editing!</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
-  <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
+  <iframe id="frmFile" src="commands.txt" onload="LoadFile();" style="display: none;"></iframe>
 
   <script>
     function copyinner(element){
@@ -55,24 +54,24 @@
         var curLine = arrLines[i];
         var entries = curLine.split(",");
         
-        await addentry(entries[0],entries[1]=="t",entries[2]=="t");
+        await addentry(entries[0],entries[1],entries[2],entries[3]);
       }
     }
 
-    async function addentry(name,showint,showfx){
-      await delay()
-      let td1 = '<td class=\"tdi\""><img src=\"blockicons/' + name + '.png\"></td>';
-      let td2 = '<td><h2>' + name + '</h2></td>';
-      let td3 = '<td><img src=' + ((showint) ? 'inticon' : 'none') + '.png><img src=' + ((showfx) ? 'fxicon' : 'none') + '.png></td>';
+    async function addentry(name,labels,args,desc){
+      //await delay()
+      let td1 = '<td><h2>' + name + '</h2> <p>' + labels + '</p></td>';
+      let td2 = '<td><code onclick="copyinner(this)">' + "!msg " + name + " " + args + ' </code></td>';
+      let td3 = '<td><p>' + desc + '</p></td>';
       document.getElementById('blocktable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + "</tr>");
     }
   </script>
 
   <table id="blocktable">
-
     <tbody>
-      <td><h2>Icon</h2></td>
-      <td><h2>Name</h2></td>
+      <td><h2>Command</h2></td>
+      <td><h2>Arguments</h2></td>
+      <td><h2>Example</h2></td>
       <td><h2>Info</h2></td>
     </tbody>
   </table>
