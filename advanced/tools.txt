@@ -1,3 +1,4 @@
+export,,,Prints the level exported to json.
 offsetblocks,x y z,0 0 1,Offsets all blocks in the scene.
 offsetwhere,exp x y z,x_<_0 0 0 1,Offsets all blocks that satisfy the expression.
 deletewhere,exp,z_==_0,Deletes all blocks that satisfy the expression.
