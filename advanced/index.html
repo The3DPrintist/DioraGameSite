@@ -21,6 +21,11 @@
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
+  <div class="margin"><h2>Table Of Contents</h2></div>
+  <div class="margin"><a href="#commands system" >Commands System</a></div>
+  <div class="margin"><a href="#custom assets" >Custom Assets</a></div>
+
+  <!-- Define code block copy function -->
   <script>
     function copyinner(element){
       let code = element.innerHTML
@@ -30,7 +35,6 @@
   </script>
 
   <!-- Dialogue Commands -->
-
   <script type="text/javascript">
     var count = 0;
 
@@ -70,19 +74,38 @@
   <iframe id="cmdfile" src="commands.txt" onload="LoadFileCmd();" style="display: none;"></iframe>
 
   <div class="margin">
+    <h1 id="commands system">Commands System</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      The Commands System is used to handle complex logic behind dialogue, triggers, and editor tools.
+      Click the examples to copy to the clipboard.
+    </p>
+  </div>
+
+  <div class="section">
+    <p>
+      These two groups of commands are actually interchangeable!
+      Switch <code onclick="copyinner(this)">#</code> for <code onclick="copyinner(this)">!msg</code>, and vice versa.
+      This can be used to do some very complex effects!
+    </p>
+  </div>
+
+  <div class="margin">
     <h2>Dialogue Commands</h2>
   </div>
 
   <div class="section">
-    <p>These commands are used in dialogue and triggers. They can be used to make story and scripted events. Click the examples to copy to the clipboard.</p>
+    <p>These commands are used in dialogue and triggers. Useful for for world building, cut-scenes, and scripted events. </p>
   </div>
 
   <table id="cmdtable">
     <tbody>
-      <td><h2>Command</h2></td>
-      <td><h2>Args</h2></td>
-      <td><h2>Example</h2></td>
-      <td><h2>Description</h2></td>
+      <td><h3>Command</h3></td>
+      <td><h3>Args</h3></td>
+      <td><h3>Example</h3></td>
+      <td><h3>Description</h3></td>
     </tbody>
     <tbody>
       <td><h3>dialogue</h3></td>
@@ -99,7 +122,6 @@
   </table>
 
    <!-- Tool Commands -->
-
   <script type="text/javascript">
     var count = 0;
 
@@ -139,34 +161,29 @@
   <iframe id="toolfile" src="tools.txt" onload="LoadFileTool();" style="display: none;"></iframe>
 
   <div class="margin">
-    <h2>Tool Commands</h2>
+    <h2>Editor Tool Commands</h2>
   </div>
 
   <div class="section">
     <p>
-      These commands can help difficult tasks in the editor.
-      They are a must have when making a complicated level!
-      Connect the Playdate to the simulator and open the developer console to use.</p>
+      These commands are used to complete tedious tasks in the editor.
+      They are a must have when making a large level!
+      Use the commands in the Playdate Simulator Console.
+    </p>
   </div>
 
   <table id="tooltable">
     <tbody>
-      <td><h2>Command</h2></td>
-      <td><h2>Args</h2></td>
-      <td><h2>Example</h2></td>
-      <td><h2>Description</h2></td>
+      <td><h3>Command</h3></td>
+      <td><h3>Args</h3></td>
+      <td><h3>Example</h3></td>
+      <td><h3>Description</h3></td>
     </tbody>
   </table>
 
-  <div class="section">
-    <p>
-      These two groups of commands are intended for different purposes but are actually interchangeable!
-      Switch <code onclick="copyinner(this)">#</code> for <code onclick="copyinner(this)">!msg</code>, and vice versa.
-      This can be used to do some very complex effects!</p>
-  </div>
-
+  <!-- Custom Assets -->
   <div class="margin">
-    <h2>Custom Assets</h2>
+    <h1 id="custom assets">Custom Assets</h1>
   </div>
 
   <div class="section">
@@ -177,13 +194,17 @@
     <a href="./files/example.zip" download style="margin: 8px" class="btn btn-outline-light" role="button">Download example project</a>
   </div>
 
+  <div class="margin">
+    <h2>Blocks</h2>
+  </div>
+
   <div class="section">
-    <h3>Blocks</h3>
     <p>
       Custom blocks require general knowledge of Blender.
       Download the template file here.
     </p>
     <a href="files/block.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download block template</a>
+    <a href="files/character.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download character template</a>
     <p>
       After customizing the block, render the frames out to a folder.
       Use the block table tool to convert to a single large png containing all of the dithered frames.
@@ -195,19 +216,30 @@
     <p>Some blocks may need custom functionality, this can be achieved with a block data file.</p>
   </div>
 
+  <div class="margin">
+    <h2>Backgrounds</h2>
+  </div>
+
   <div class="section">
-    <h3>Backgrounds</h3>
     <p>
       Custom backgrounds require general knowledge of Blender.
       Download the template file here.
     </p>
     <a href="files/background.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download background template</a>
+    <p>
+      Customise the file, render out to frames
+    </p>
   </div>
 
+  <div class="margin">
+    <h2>Music</h2>
+  </div>
+
+
   <div class="section">
-    <h3>Music</h3>
     <p>
       Custom music can be used, convert to <code>ADPCM WAV</code>.
+      Build to a .pda using the Playdate SDK.
       Music looping can be defined using a descriptor txt with the same name as the wav.
       The txt contains the decimal seconds into the song where the music should resume at when it reaches the end.
       See example project for the formatting of the descriptor.

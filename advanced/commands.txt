@@ -22,3 +22,4 @@ wait,seconds,4.5,Pauses the commands the defined amount of seconds. Triggers onl
 branch,dialogue,tip1 tip2 tip3,Picks a random dialogue from the list and continues. Does not need more than one file.
 setlore,name value,spoketodave true,Sets lore value. Lore is used to handle story progression.
 branchlore,name dialogue,spoketodave reward,Branches to another dialogue only if the lore is true.
+gointo,name,room,Brings player into the level. Like going through a door.
