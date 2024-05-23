@@ -230,6 +230,10 @@ select{
     border-radius: 8px;
 }
 
+.textlink{
+    color: #FFFFFF;
+}
+
 .rounded{
     box-shadow:  5px 5px 8px #1A1A1A;
 }

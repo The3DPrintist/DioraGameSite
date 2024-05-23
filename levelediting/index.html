@@ -18,12 +18,15 @@
 
   <div class="margin">
     <h1>Level Editing</h1>
-    <p>Introduction to level editing!</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
-  <iframe id="frmFile" src="commands.txt" onload="LoadFile();" style="display: none;"></iframe>
+  <div class="margin"><h2>Table Of Contents</h2></div>
+  <div class="margin"><a href="#intro" class="textlink">Intro</a></div>
+  <div class="margin"><a href="#editor" class="textlink">Editor</a></div>
+  <div class="margin"><a href="#menus" class="textlink">Menus</a></div>
 
+  <!-- Define code block copy function -->
   <script>
     function copyinner(element){
       let code = element.innerHTML
@@ -32,55 +35,154 @@
     }
   </script>
 
-  <script type="text/javascript">
-    var count = 0;
+  <div class="margin">
+    <h1 id="intro">Intro</h1>
+  </div>
 
-    function delay(){
-    return new Promise((resolve, reject) => {
-      setTimeout(resolve, 1);
-    })
-    }
+  <div class="section">
+    <p>
+      The Construct is your hub for creating your own levels for Diora!
+      Enter the construct and interact with the blueprint table to get started.
+    </p>
 
-    async function LoadFile() {
-      var oFrame = document.getElementById("frmFile");
-      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-      while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-      var arrLines = strRawContents.split("\n");
+    <div>
+      <img src="enter.gif" class="rounded" style="max-width: 400px; ">
+    </div>
+  </div>
 
-      count = arrLines.length;
+  <div class="section">
+    <p>
+      While you can make plenty of levels just on the Playdate, you can make some more complex levels and take advantage of advanced commands and custom assets!
+    </p>
+    <a href="../advanced/" class="btn btn-outline-light" role="button">Advanced Level Editing</a>
+  </div>
 
-      for (var i = 0; i < arrLines.length; i++) {
-        var curLine = arrLines[i];
-        var entries = curLine.split(",");
-        
-        await addentry(entries[0],entries[1],entries[2],entries[3]);
-      }
-    }
+  <div class="margin">
+    <h1 id="editor">Editor</h1>
+  </div>
 
-    async function addentry(name,labels,args,desc){
-      //await delay()
-      let td1 = '<td><h2>' + name + '</h2> <p>' + labels + '</p></td>';
-      let td2 = '<td><code onclick="copyinner(this)">' + "!msg " + name + " " + args + ' </code></td>';
-      let td3 = '<td><p>' + desc + '</p></td>';
-      document.getElementById('blocktable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + "</tr>");
-    }
-  </script>
+  <div class="margin">
+    <h2>Layout</h2>
+  </div>
 
-  <table id="blocktable">
+  <div class="section">
+    <p>
+      While you can make plenty of levels just on the Playdate, you can make some more complex levels and take advantage of advanced commands and custom assets!
+    </p>
+  </div>
+
+  <table>
     <tbody>
-      <td><h2>Command</h2></td>
-      <td><h2>Arguments</h2></td>
-      <td><h2>Example</h2></td>
-      <td><h2>Info</h2></td>
+      <td><p style="text-align: right">Selected block</p></td>
+      <td><p></p></td>
+      <td><p>Cursor position</p></td>
+    </tbody>
+    <tbody>
+      <td><p></p></td>
+      <td><img src="layout.gif" class="rounded" style="width: 100%; max-width: 400px; "></td>
+      <td><p></p></td>
+    </tbody>
+    <tbody>
+      <td><p style="text-align: right">D-Pad hint</p></td>
+      <td><p></p></td>
+      <td><p>Crank hint</p></td>
     </tbody>
   </table>
 
   <div class="margin">
-    <a href="#top">
-      <button type="submit" class="btn btn-outline-light">▲</button>
-    </a>
+    <h2>Controls While Not Holding <img src="ci/b.png"></h2>
   </div>
+
+  <table>
+    <tbody>
+      <td><img src="ci/a.png"></td>
+      <td><h3>Place currently selected block</h3></td>
+    </tbody>
+    <tbody>
+      <td><img src="ci/crank.png"></td>
+      <td><h3>Rotate level</h3></td>
+    </tbody>
+    <tbody>
+      <td><img src="ci/all.png"></td>
+      <td><h3>Move cursor along X and Y</h3></td>
+    </tbody>
+  </table>
+
+  <div class="margin">
+    <h2>Controls While Holding <img src="ci/b.png"></h2>
+  </div>
+
+  <table>
+    <tbody>
+      <td><img src="ci/a.png"></td>
+      <td><h3>Erase hovered block</h3></td>
+    </tbody>
+    <tbody>
+      <td><img src="ci/crank.png"></td>
+      <td><h3>Change selected block</h3></td>
+    </tbody>
+    <tbody>
+      <td><img src="ci/updown.png"></td>
+      <td><h3>Move cursor up and down</h3></td>
+    </tbody>
+    <tbody>
+      <td><img src="ci/leftright.png"></td>
+      <td><h3>Rotate cursor</h3></td>
+    </tbody>
+  </table>
+
+  <div class="margin">
+    <h1 id="menus">Menus</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      Use these menus to manage your level and project.
+    </p>
+    <img src="menus.png" class="rounded" style="width: 100%; max-width: 400px; ">
+  </div>
+
+  <table>
+    <tbody>
+      <td><h3>Test</h3></td>
+      <td><p>Test your level! Press <img src="ci/b.png"> to exit.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Editor Settings</h3></td>
+      <td><p>Change settings such as how far the cursor moves and overlapping.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Level Settings</h3></td>
+      <td><p>Change settings such as the music and background of the level.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Level Settings</h3></td>
+      <td><p>Change settings such as the music and background of the level.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Block Library</h3></td>
+      <td><p>Browse and load a block to use in the level.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Block Inspector</h3></td>
+      <td><p>Hover the cursor over a block and inspect it's values. You can edit some values as well.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Edit Connections</h3></td>
+      <td><p>Hover the cursor over a block and set it's connections for logic blocks such as buttons.</p></td>
+    </tbody>
+
+    <tbody>
+      <td><h3>Save/Quit</h3></td>
+      <td><p>Manage your level, and exit back to the project menu. You can delete projects and levels here as well.</p></td>
+    </tbody>
+  </table>
 
 
 </body>

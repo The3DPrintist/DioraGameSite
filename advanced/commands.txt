@@ -13,11 +13,9 @@ destroy,,,Destroys the block that owns the dialogue.
 destroyat,x y z,1 2 3,Destroys the block at xyz.
 cam,angle z time,90 1 2,Starts a camera animation. Can also be 'end' to return control to the player. Good for cutscenes.
 sound,name,explosion,Plays the sound effect.
-music,name,bauhaus_groove,Changes the music. Can also be 'none' to stop music.
 win,delay,2,Diora is win! :) Pauses for effect. Delay value is optional.
 kill,delay,2,Diora is kil. :( Pauses for effect. Delay value is optional.
 video,name,intro,Plays a video.
-background,name,construct,Changes the background. Can also be 'void' for no background. 
 wait,seconds,4.5,Pauses the commands the defined amount of seconds. Triggers only.
 branch,dialogue,tip1 tip2 tip3,Picks a random dialogue from the list and continues. Does not need more than one file.
 setlore,name value,spoketodave true,Sets lore value. Lore is used to handle story progression.
