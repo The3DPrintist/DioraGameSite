@@ -3,6 +3,8 @@ loadblock,name,ladder,Loads the block. Required for custom blocks.
 music,name,bauhaus_groove,Changes the level music. Can also be 'none' for no music. Required for custom music.
 background,name,construct,Changes the level background. Can also be 'void' for no background. Required for custom backgrounds.
 blockdata,name,ladder,Prints the block data .json to the console. Useful for making custom blocks.
+demos,,,Print the demo list.
+demo,name,push,Start a demo on the demo list.
 offsetblocks,x y z,0 0 1,Offsets all blocks in the scene.
 offsetwhere,exp x y z,y_==_0 0 0 1,Offsets all blocks that satisfy the expression.
 deletewhere,exp,x_<_0,Deletes all blocks that satisfy the expression.

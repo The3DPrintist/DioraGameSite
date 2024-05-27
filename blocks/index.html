@@ -18,8 +18,7 @@
 
   <div class="margin">
     <h1>Block Library</h1>
-    <p>Almost every block you can use. Some blocks are removed to avoid spoilers!</p>
-    <p>Use the editor command <code onclick="copyinner(this)">!msg loadblock NAME</code> to load a block by name.</p>
+    <p>Almost every block in the game!</p>
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
@@ -32,6 +31,29 @@
       navigator.clipboard.writeText(code);
     }
   </script>
+
+  <div class="margin">
+    <h2>Info icons</h2>
+  </div>
+
+  <table>
+    <tbody>
+      <td><img src="inticon.png"></td>
+      <td><p>The block can be interacted with by the player</p></td>
+    </tbody>
+    <tbody>
+      <td><img src="fxicon.png"></td>
+      <td><p>The block has a special effect</p></td>
+    </tbody>
+    <tbody>
+      <td><img src="conicon.png"></td>
+      <td><p>The block connects to other blocks</p></td>
+    </tbody>
+  </table>
+
+  <div class="section">
+    <p>Use the editor command <code onclick="copyinner(this)">!msg loadblock NAME</code> to load a block by name.</p>
+  </div>
 
   <script type="text/javascript">
     var count = 0;
