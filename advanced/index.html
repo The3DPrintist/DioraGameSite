@@ -22,9 +22,9 @@
   </div>
 
   <div class="margin"><h2>Table Of Contents</h2></div>
-  <div class="margin"><a href="#commandssystem" class="textlink">Commands System</a></div>
-  <div class="margin"><a href="#customassets" class="textlink">Custom Assets</a></div>
-  <div class="margin"><a href="#blockdemos" class="textlink">Block Demos</a></div>
+  <div class="margin"><a href="#commandssystem" class="textlink">1. Commands System</a></div>
+  <div class="margin"><a href="#customassets" class="textlink">2. Custom Assets</a></div>
+  <div class="margin"><a href="#blockdemos" class="textlink">3. Block Demos</a></div>
 
   <!-- Define code block copy function -->
   <script>
@@ -187,6 +187,10 @@
     <h1 id="customassets">Custom Assets</h1>
   </div>
 
+  <div class="margin">
+    <h2>Example Project</h2>
+  </div>
+
   <div class="section">
     <p>
       Custom levels support many types of custom assets, this section will cover how to create your own assets!
@@ -283,7 +287,6 @@
     <h2>Music</h2>
   </div>
 
-
   <div class="section">
     <p>
       Custom music can be used, convert to <code>ADPCM WAV</code>.
@@ -297,6 +300,37 @@
       Use the editor command <code onclick="copyinner(this)">!msg music NAME</code> to load the music.
     </p>
   </div>
+
+  <div class="margin">
+    <h2>Icons</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      You can use custom images as your project and level icons!
+      Create a custom icon at (200x240)
+      Build to a .pdi using the Playdate SDK.
+      See the Example project for the location of these icons.
+    </p>
+  </div>
+
+  <div class="margin">
+    <h2>Metadata</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      You can use the lock and desc files to supply optional metadata about the project.
+      Use desc.txt to show a simple message about your project in the menu.
+      Use lock.txt to prevent editing the level without first removing the file.
+      Consider doing this before sharing your level for a more polished experience.
+    </p>
+
+    <div>
+      <img src="metadata.png" class="rounded" style="max-width: 400px; ">
+    </div>
+  </div>
+
 
   <!-- Example Levels -->
   <div class="margin">
