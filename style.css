@@ -182,6 +182,12 @@ select{
     )
 }
 
+.cornerbutton{
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+}
+
 @media (max-aspect-ratio: 1) {
     .section{
         margin: 5%;
@@ -234,10 +240,26 @@ select{
     color: #FFFFFF;
 }
 
+.toc{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+li {
+    color: #FFFFFF;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+ul {
+    color: #FFFFFF;
+    text-decoration: none;
+    list-style-type: none;
+}
+
 .rounded{
     box-shadow:  5px 5px 8px #1A1A1A;
 }
-
 
 .hline {
     border-color: #1E1E1E;

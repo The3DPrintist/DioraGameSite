@@ -21,11 +21,29 @@
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
-  <div class="margin"><h2>Table Of Contents</h2></div>
-  <div class="margin"><a href="#intro" class="textlink">1. Intro</a></div>
-  <div class="margin"><a href="#editor" class="textlink">2. Editor</a></div>
-  <div class="margin"><a href="#menus" class="textlink">3. Menus</a></div>
-  <div class="margin"><a href="#advanced" class="textlink">4. Advanced</a></div>
+  <div class="margin">
+    <p>Table of Contents</p>
+    <ul>
+      <li>
+        <a href="#intro" class="toc">1. Intro</a>
+        <ul>
+          <li><a href="#editor" class="toc">1.1. Editor</a></li>
+          <li><a href="#menus" class="toc">1.2. Menus</a></li>
+          <li><a href="#connections" class="toc">1.3. Connections</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#advanced" class="toc">2. Advanced Editing</a>
+        <ul>
+          <li><a href="#commands" class="toc">2.1. Commands</a></li>
+          <li><a href="#dialogue" class="toc">2.2. Dialogue</a></li>
+          <li><a href="#customassets" class="toc">2.3. Custom Assets</a></li>
+          <li><a href="#blockdemos" class="toc">2.4. Block Demos</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
   <!-- Define code block copy function -->
   <script>
@@ -174,16 +192,355 @@
   </table>
 
   <div class="margin">
-    <h1 id="advanced">Advanced</h1>
+    <h1 id="connections">Connections</h1>
+  </div>
+
+  <div class="margin">
+    <p>Placeholder :)</p>
+  </div>
+
+  <div class="margin">
+    <h1 id="advanced">Advanced Editing</h1>
   </div>
 
   <div class="section">
     <p>
       While you can make plenty of levels on the Playdate, you can take advantage of advanced tools using a computer!
     </p>
-    <a href="../advanced/" class="btn btn-outline-light" role="button">Advanced Level Editing</a>
   </div>
 
+  <div class="margin">
+    <h1 id="commands">Commands</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      The Commands System is used to handle complex logic behind dialogue, triggers, and editor tools.
+      Click the examples to copy to the clipboard.
+    </p>
+  </div>
+
+  <div class="section">
+    <p>
+      These two groups of commands are actually interchangeable!
+      Switch <code onclick="copyinner(this)">#</code> for <code onclick="copyinner(this)">!msg</code>, and vice versa.
+      This can be used to do some very complex effects!
+    </p>
+  </div>
+
+  <!-- Dialogue Commands -->
+  <script type="text/javascript">
+    var count = 0;
+
+    function delay(){
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 1);
+    })
+    }
+
+    async function LoadFileCmd() {
+      var oFrame = document.getElementById("cmdfile");
+      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+      while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+      var arrLines = strRawContents.split("\n");
+
+      count = arrLines.length;
+
+      for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var entries = curLine.split(",");
+        
+        await addentrycmd(entries[0],entries[1],entries[2],entries[3]);
+      }
+    }
+
+    async function addentrycmd(name,labels,args,desc){
+      //await delay()
+      let td1 = '<td><h3>' + name + '</h3></td>';
+      let td2 = '<td><p>' + labels + '</p></td>';
+      let td3 = '<td><code onclick="copyinner(this)">' + "#" + name + " " + args + ' </code></td>';
+      let td4 = '<td><p>' + desc + '</p></td>';
+      document.getElementById('cmdtable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + td4 + "</tr>");
+    }
+  </script>
+
+  <iframe id="cmdfile" src="commands.txt" onload="LoadFileCmd();" style="display: none;"></iframe>
+
+  <div class="margin">
+    <h2>Dialogue Commands</h2>
+  </div>
+
+  <div class="section">
+    <p>These commands are used in dialogue and triggers. Useful for for world building, cut-scenes, and scripted events. </p>
+  </div>
+
+  <table id="cmdtable">
+    <tbody>
+      <td><h3>Command</h3></td>
+      <td><h3>Args</h3></td>
+      <td><h3>Example</h3></td>
+      <td><h3>Description</h3></td>
+    </tbody>
+    <tbody>
+      <td><h3>dialogue</h3></td>
+      <td></td>
+      <td><code onclick="copyinner(this)">Hello World!</code></td>
+      <td><p>Base dialogue, no <code>#</code>. Cannot be used in triggers.</p></td>
+    </tbody>
+    <tbody>
+      <td><h3>comment</h3></td>
+      <td></td>
+      <td><code onclick="copyinner(this)">#-- print Hello World!</code></td>
+      <td><p>Its a comment, pretty self explanatory. </p></td>
+    </tbody>
+  </table>
+
+  <!-- Tool Commands -->
+  <script type="text/javascript">
+    var count = 0;
+
+    function delay(){
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 1);
+    })
+    }
+
+    async function LoadFileTool() {
+      var oFrame = document.getElementById("toolfile");
+      var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+      while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+      var arrLines = strRawContents.split("\n");
+
+      count = arrLines.length;
+
+      for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var entries = curLine.split(",");
+        
+        await addentrytool(entries[0],entries[1],entries[2],entries[3]);
+      }
+    }
+
+    async function addentrytool(name,labels,args,desc){
+      //await delay()
+      let td1 = '<td><h3>' + name + '</h3></td>';
+      let td2 = '<td><p>' + labels + '</p></td>';
+      let td3 = '<td><code onclick="copyinner(this)">' + "!msg " + name + " " + args + ' </code></td>';
+      let td4 = '<td><p>' + desc + '</p></td>';
+      document.getElementById('tooltable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + td4 + "</tr>");
+    }
+  </script>
+
+  <iframe id="toolfile" src="tools.txt" onload="LoadFileTool();" style="display: none;"></iframe>
+
+  <div class="margin">
+    <h2>Editor Tool Commands</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      These commands are used to complete tedious tasks in the editor.
+      They are a must have when making a large level!
+      Use the commands in the Playdate Simulator Console.
+    </p>
+  </div>
+
+  <table id="tooltable">
+    <tbody>
+      <td><h3>Command</h3></td>
+      <td><h3>Args</h3></td>
+      <td><h3>Example</h3></td>
+      <td><h3>Description</h3></td>
+    </tbody>
+  </table>
+
+  <div class="margin">
+    <h1 id="dialogue">Dialogue</h1>
+  </div>
+
+  <div class="margin">
+    <p>Placeholder :)</p>
+  </div>
+
+  <!-- Custom Assets -->
+  <div class="margin">
+    <h1 id="customassets">Custom Assets</h1>
+  </div>
+
+  <div class="margin">
+    <h2>Example Project</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      Custom levels support many types of custom assets, this section will cover how to create your own assets!
+      The example project can be used to understand the file structure and features of custom assets.
+    </p>
+
+    <a href="./files/ExampleProject.zip" download style="margin: 8px" class="btn btn-outline-light" role="button">Download example project</a>
+    <div>
+      <img src="exampleicon.png" class="rounded" style="max-width: 400px; ">
+    </div>
+
+    <p>
+      Most custom assets require knowledge of Blender (3.6) and the Playdate SDK.
+    </p>
+    <a href="https://www.blender.org/download/lts/3-6/" target=”_blank” style="margin: 8px" class="btn btn-outline-light" role="button">Blender 3.6</a>
+    <a href="https://play.date/dev/" target=”_blank” style="margin: 8px" class="btn btn-outline-light" role="button">Playdate SDK</a>
+
+  </div>
+
+  <div class="margin">
+    <h2>Blocks</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      Download the template files here.
+    </p>
+    <a href="files/ExampleBlock.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download block template</a>
+    <a href="files/ExampleCharacter.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download character template</a>
+    <div>
+    <img src="blockicon.png" class="rounded" style="width: 20%; ">
+    <img src="charicon.png" class="rounded" style="width: 20%; ">
+    </div>
+    <p>
+      After customizing the block, render the frames out to a folder.
+      Use the dither tool to convert to a single large image containing all of the dithered frames.
+    </p>
+
+    <a href="../tool" target=”_blank” class="btn btn-outline-light" role="button">Dither Tool</a>
+
+    <p>
+      Use the Playdate SDK to build the image table to a .pdt, and place it into the blocks folder in your project.
+      The character file will have an extra frame for the dialogue icon. Dither and build it as a separate .pdi.
+    </p>
+
+    <p>
+      By naming the custom block the same name as an existing block, you can replace the graphics of that block in the project.
+      This could be used to create a unique art style, or replace Diora with a new character.
+    </p>
+
+    <p>
+      Some blocks may need custom functionality, this can be achieved with a block data file.
+      Use the editor command <code onclick="copyinner(this)">!msg blockdata NAME</code> to see that block's data.
+      See the example project for the example block data file.
+    </p>
+
+    <p>
+      Use the editor command <code onclick="copyinner(this)">!msg loadblock NAME</code> to load the block.
+    </p>
+  </div>
+
+  <div class="margin">
+    <h2>Backgrounds</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      Download the template file here.
+    </p>
+    <a href="files/ExampleBackground.blend" download style="margin: 8px" class="btn btn-outline-light" role="button">Download background template</a>
+    
+    <div>
+      <img src="bgicon.png" class="rounded" style="width: 40%; ">
+    </div>
+
+    <p>
+      After customizing the background, render the frames out to a folder.
+      Use the dither tool to convert to a single large image containing all of the dithered frames.
+    </p>
+
+    <a href="../tool" target=”_blank” class="btn btn-outline-light" role="button">Dither Tool</a>
+
+    <p>
+      Use the Playdate SDK to build the image table to a .pdt, and place it into the backgrounds folder in your project.
+    </p>
+
+    <p>
+      Use the editor command <code onclick="copyinner(this)">!msg background NAME</code> to load the background.
+    </p>
+
+  </div>
+
+  <div class="margin">
+    <h2>Music</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      Custom music can be used, convert to <code>ADPCM WAV</code>.
+      Build to a .pda using the Playdate SDK.
+      Music looping can be defined using a descriptor txt with the same name as the wav.
+      The txt contains the decimal seconds into the song where the music should resume at when it reaches the end.
+      See example project for the formatting of the descriptor.
+    </p>
+
+    <p>
+      Use the editor command <code onclick="copyinner(this)">!msg music NAME</code> to load the music.
+    </p>
+  </div>
+
+  <div class="margin">
+    <h2>Icons</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      You can use custom images as your project and level icons!
+      Create a custom icon at (200x240)
+      Build to a .pdi using the Playdate SDK.
+      See the Example project for the location of these icons.
+    </p>
+  </div>
+
+  <div class="margin">
+    <h2>Metadata</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      You can use the lock and desc files to supply optional metadata about the project.
+      Use desc.txt to show a simple message about your project in the menu.
+      Use lock.txt to prevent editing the level without first removing the file.
+      Consider doing this before sharing your level for a more polished experience.
+    </p>
+
+    <div>
+      <img src="metadata.png" class="rounded" style="max-width: 400px; ">
+    </div>
+  </div>
+
+  <!-- Example Levels -->
+  <div class="margin">
+    <h1 id="blockdemos">Block Demos</h1>
+  </div>
+
+  <div class="section">
+    <p>
+      Unsure of how to use a certain block?
+      There is a large list of demo levels that show exactly how to set up a block to work correctly.
+      They can also be used for inspiration!
+    </p>
+
+    <div>
+      <img src="demo.png" class="rounded" style="max-width: 400px; ">
+    </div>
+
+    <p>
+      Use the editor command <code onclick="copyinner(this)">!msg demos</code> to print the demo list.
+    </p>
+
+    <p>
+      Use the editor command <code onclick="copyinner(this)">!msg demo NAME</code> to start a demo.
+      This can be done from the map or inside the construct.
+    </p>
+
+  </div>
+
+  <a href="#top" class="btn btn-outline-light cornerbutton">▲</a>
 
 </body>
 </html>
