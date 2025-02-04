@@ -37,7 +37,6 @@
         <a href="#advanced" class="toc">2. Advanced Editing</a>
         <ul>
           <li><a href="#commands" class="toc">2.1. Commands</a></li>
-          <li><a href="#dialogue" class="toc">2.2. Dialogue</a></li>
           <li><a href="#customassets" class="toc">2.3. Custom Assets</a></li>
           <li><a href="#blockdemos" class="toc">2.4. Block Demos</a></li>
         </ul>
@@ -55,7 +54,7 @@
   </script>
 
   <div class="margin">
-    <h1 id="intro">Intro</h1>
+    <h2 id="intro">Intro</h2>
   </div>
 
   <div class="section">
@@ -70,11 +69,11 @@
   </div>
 
   <div class="margin">
-    <h1 id="editor">Editor</h1>
+    <h2 id="editor">Editor</h2>
   </div>
 
   <div class="margin">
-    <h2>Layout</h2>
+    <h3>Layout</h3>
   </div>
 
   <div class="section">
@@ -102,7 +101,7 @@
   </table>
 
   <div class="margin">
-    <h2>Controls While Not Holding <img src="ci/b.png"></h2>
+    <h3>Controls While Not Holding <img src="ci/b.png"></h3>
   </div>
 
   <table>
@@ -121,7 +120,7 @@
   </table>
 
   <div class="margin">
-    <h2>Controls While Holding <img src="ci/b.png"></h2>
+    <h3>Controls While Holding <img src="ci/b.png"></h3>
   </div>
 
   <table>
@@ -144,7 +143,7 @@
   </table>
 
   <div class="margin">
-    <h1 id="menus">Menus</h1>
+    <h2 id="menus">Menus</h2>
   </div>
 
   <div class="section">
@@ -167,7 +166,7 @@
 
     <tbody>
       <td><h3>Editor Settings</h3></td>
-      <td><p>Change settings such as cursor step and block intersection.</p></td>
+      <td><p>Change settings such as the amount the cursor moves.</p></td>
     </tbody>
 
     <tbody>
@@ -177,7 +176,7 @@
 
     <tbody>
       <td><h3>Block Library</h3></td>
-      <td><p>Browse and load a block to use in the level.</p></td>
+      <td><p>Browse and load blocks to use in the level.</p></td>
     </tbody>
 
     <tbody>
@@ -187,20 +186,29 @@
 
     <tbody>
       <td><h3>Edit Connections</h3></td>
-      <td><p>Hover the cursor over a block and set its connections, such as connecting a logic gate to a button.</p></td>
+      <td><p>Hover the cursor over a block and edit its connections.</p></td>
     </tbody>
   </table>
 
   <div class="margin">
-    <h1 id="connections">Connections</h1>
+    <h2 id="connections">Connections</h2>
+  </div>
+
+  <div class="section">
+    <p>
+      The connections menu is used to link blocks together.
+    </p>
+    <img src="connections.gif" class="rounded" style="width: 100%; max-width: 400px; ">
+  </div>
+
+  <div class="section">
+    <p>
+      Connections are usually linked opposite to the flow, this is because most blocks with connections are 'listening' for the button's state to change.
+    </p>
   </div>
 
   <div class="margin">
-    <p>Placeholder :)</p>
-  </div>
-
-  <div class="margin">
-    <h1 id="advanced">Advanced Editing</h1>
+    <h2 id="advanced">Advanced Editing</h2>
   </div>
 
   <div class="section">
@@ -210,7 +218,7 @@
   </div>
 
   <div class="margin">
-    <h1 id="commands">Commands</h1>
+    <h2 id="commands">Commands</h2>
   </div>
 
   <div class="section">
@@ -268,11 +276,11 @@
   <iframe id="cmdfile" src="commands.txt" onload="LoadFileCmd();" style="display: none;"></iframe>
 
   <div class="margin">
-    <h2>Dialogue Commands</h2>
+    <h3>Dialogue Commands</h3>
   </div>
 
   <div class="section">
-    <p>These commands are used in dialogue and triggers. Useful for for world building, cut-scenes, and scripted events. </p>
+    <p>These commands are used in dialogue and triggers. Useful for for cutscenes and world building</p>
   </div>
 
   <table id="cmdtable">
@@ -336,7 +344,7 @@
   <iframe id="toolfile" src="tools.txt" onload="LoadFileTool();" style="display: none;"></iframe>
 
   <div class="margin">
-    <h2>Editor Tool Commands</h2>
+    <h3>Editor Tool Commands</h3>
   </div>
 
   <div class="section">
@@ -356,21 +364,13 @@
     </tbody>
   </table>
 
-  <div class="margin">
-    <h1 id="dialogue">Dialogue</h1>
-  </div>
-
-  <div class="margin">
-    <p>Placeholder :)</p>
-  </div>
-
   <!-- Custom Assets -->
   <div class="margin">
-    <h1 id="customassets">Custom Assets</h1>
+    <h2 id="customassets">Custom Assets</h2>
   </div>
 
   <div class="margin">
-    <h2>Example Project</h2>
+    <h3>Example Project</h3>
   </div>
 
   <div class="section">
@@ -393,7 +393,7 @@
   </div>
 
   <div class="margin">
-    <h2>Blocks</h2>
+    <h3>Blocks</h3>
   </div>
 
   <div class="section">
@@ -435,7 +435,7 @@
   </div>
 
   <div class="margin">
-    <h2>Backgrounds</h2>
+    <h3>Backgrounds</h3>
   </div>
 
   <div class="section">
@@ -466,7 +466,7 @@
   </div>
 
   <div class="margin">
-    <h2>Music</h2>
+    <h3>Music</h3>
   </div>
 
   <div class="section">
@@ -484,7 +484,7 @@
   </div>
 
   <div class="margin">
-    <h2>Icons</h2>
+    <h3>Icons</h3>
   </div>
 
   <div class="section">
@@ -497,7 +497,7 @@
   </div>
 
   <div class="margin">
-    <h2>Metadata</h2>
+    <h3>Metadata</h3>
   </div>
 
   <div class="section">
@@ -515,7 +515,7 @@
 
   <!-- Example Levels -->
   <div class="margin">
-    <h1 id="blockdemos">Block Demos</h1>
+    <h2 id="blockdemos">Block Demos</h2>
   </div>
 
   <div class="section">
