@@ -67,27 +67,6 @@ input{
     border-radius: 8px;
 }
 
-table{
-    background: #1E1E1E;
-    border-collapse: collapse;
-    padding: 10px;
-    margin: 15%;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    box-shadow:  5px 5px 8px #0e0e0e;
-    clip-path: polygon(
-      0 8px,
-      14px 0,
-      calc(100% - 14px) 0,
-      100% 8px,
-      100% calc(100% - 8px),
-      calc(100% - 14px) 100%,
-      14px 100%,
-      0% calc(100% - 8px),
-      0% 8px
-    )
-}
-
 td{
     padding: 8px;
     text-align: left;

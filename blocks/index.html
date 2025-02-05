@@ -22,7 +22,7 @@
     <a href=".." class="btn btn-outline-light" role="button">back to home page</a>
   </div>
 
-  <iframe id="frmFile" src="blocknames.txt" onload="LoadFile();" style="display: none;"></iframe>
+  <iframe id="frmFile" src="blocks.txt" onload="LoadFile();" style="display: none;"></iframe>
 
   <script>
     function copyinner(element){
@@ -36,20 +36,22 @@
     <h2>Info icons</h2>
   </div>
 
-  <table>
-    <tbody>
-      <td><img src="inticon.png"></td>
-      <td><p>The block can be interacted with by the player</p></td>
-    </tbody>
-    <tbody>
-      <td><img src="fxicon.png"></td>
-      <td><p>The block has a special effect</p></td>
-    </tbody>
-    <tbody>
-      <td><img src="conicon.png"></td>
-      <td><p>The block connects to other blocks</p></td>
-    </tbody>
-  </table>
+  <div class="section">
+    <table>
+      <tbody>
+        <td><img src="inticon.png"></td>
+        <td><p>The block can be interacted with by the player</p></td>
+      </tbody>
+      <tbody>
+        <td><img src="fxicon.png"></td>
+        <td><p>The block has a special effect</p></td>
+      </tbody>
+      <tbody>
+        <td><img src="conicon.png"></td>
+        <td><p>The block connects to other blocks</p></td>
+      </tbody>
+    </table>
+  </div>
 
   <div class="section">
     <p>Use the editor command <code onclick="copyinner(this)">!msg loadblock NAME</code> to load a block by name.</p>
@@ -76,27 +78,32 @@
       for (var i = 0; i < arrLines.length; i++) {
         var curLine = arrLines[i];
         var entries = curLine.split(",");
+        if(entries.length==1){
+          break;
+        }
         
-        await addentry(entries[0],entries[1]=="t",entries[2]=="t");
+        await addentry(entries[0],entries[1]=="t",entries[2]=="t",entries[3]=="t");
       }
     }
 
-    async function addentry(name,showint,showfx){
+    async function addentry(name,showint,showfx,showconn){
       await delay()
       let td1 = '<td class=\"tdi\""><img src=\"blockicons/' + name + '.png\"></td>';
       let td2 = '<td><h2>' + name + '</h2></td>';
-      let td3 = '<td><img src=' + ((showint) ? 'inticon' : 'none') + '.png><img src=' + ((showfx) ? 'fxicon' : 'none') + '.png></td>';
+      let td3 = '<td><img src=' + ((showint) ? 'inticon' : 'none') + '.png><img src=' + ((showfx) ? 'fxicon' : 'none') + '.png>' + '<img src=' + ((showconn) ? 'conicon' : 'none') + '.png></td>';
       document.getElementById('blocktable').insertAdjacentHTML('beforeend', '<tr>' + td1 + td2 + td3 + "</tr>");
     }
   </script>
 
-  <table id="blocktable">
-    <tbody>
-      <td><h2>Icon</h2></td>
-      <td><h2>Name</h2></td>
-      <td><h2>Info</h2></td>
-    </tbody>
-  </table>
+  <div class="section">
+    <table id="blocktable">
+      <tbody>
+        <td><h2>Icon</h2></td>
+        <td><h2>Name</h2></td>
+        <td><h2>Info</h2></td>
+      </tbody>
+    </table>
+  </div>
 
   <a href="#top" class="btn btn-outline-light cornerbutton">▲</a>
 
