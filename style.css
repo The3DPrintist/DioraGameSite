@@ -194,6 +194,11 @@ select{
         margin-bottom: 16px;
     }
 
+    *
+    {
+        font-size: larger;
+    }
+
 }
 
 ::-webkit-scrollbar {
