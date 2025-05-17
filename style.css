@@ -1,62 +1,51 @@
 html {
     scroll-behavior: smooth;
+    padding: 0;
+    margin: 0;
     background-color: #000000;
     background-color:#121212;
 }
 
 body{
     background-color: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 @font-face {
-    font-family: Lato;
-    src: url(https://zack3dprints.com/font/Lato-Regular.ttf);
+    font-family: 'Inter';
+    src: url('/font/Inter.ttf') format('truetype');
 }
 
-@font-face {
-    font-family: LatoB;
-    src: url(https://zack3dprints.com/font/Lato-Bold.ttf);
-}
-
-@font-face {
-    font-family: Simp;
-    src: url(https://zack3dprints.com/font/SIMPLIFICA.ttf)
-}
-
-@font-face {
-    font-family: 'NotoColorEmoji';
-    src: url('/font/NotoColorEmoji.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+*
+{
+	font-family: 'Inter';
+	font-weight: 250;
+	font-size: em;
+	line-height: 1.5em;
 }
 
 h1 {
     color: #FFC500;
     font-size:64px;
     font-weight: bold;
-    font-family: Lato
 }
 
 h2 {
     color: #FFC500;
-    font-family: Lato
 }
 
 h3 {
     color: #FFFFFF;
-    font-family: Lato
 }
 
 p {
     color: #FFFFFF;
-    font-family: Lato;
     font-size: large;
 }
 
 label{
     color: #FFFFFF;
-    font-family: Lato;
     margin: 16px;
 }
 
@@ -196,7 +185,7 @@ select{
 
     *
     {
-        font-size: larger;
+        font-size:larger;
     }
 
 }
