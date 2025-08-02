@@ -32,6 +32,7 @@ let tileh = 0;
 
 input.addEventListener("change", () => {
     const files = input.files;
+    document.getElementById("blockname").value = removeFileExtension(input.files[0].name);
     for (let i = 0; i < files.length; i++) {
         imagesArray.push(files[i]);
     }
@@ -89,6 +90,9 @@ function displayImages() {
 
         if((iw == 64 && ih == 64) || (iw == 400 && ih == 240)){
             addstat ("📐", iw + "x" + ih);
+        }else if(iw==100){
+            addwarn ("Assuming level icon!");
+            document.getElementById("power").value = 1;
         }else{
             addwarn ("Image size (" + iw + "x" + ih + ") may be bad.");
         }
@@ -302,6 +306,10 @@ function setpx(data,i,color){
     data[i] = color[0];
     data[i+1] = color[1];
     data[i+2] = color[2];
+}
+
+function removeFileExtension(filename) {
+    return filename.replace(/\.[^/.]+$/, '');
 }
     
 let start, previousTimeStamp;
