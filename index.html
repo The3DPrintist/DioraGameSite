@@ -16,41 +16,47 @@
 
 <body style="background: none;">
 
+  <br>
   <div class="margin" >
-    <!-- <h1>Diora</h1> -->
-    <img src="dioralogo.png" width="33.33%" alt="Diora">
-    <p>A work in progress isometric 3D game for the Panic Playdate!</p>
-  </div>
-
-  <div class="margin">
-    <div style="border-radius: 20px 20px 0px 0px; padding: 4px; background-image: linear-gradient(180deg, #FFC502 280px, transparent); width: 480px; height: 312px; margin: auto; box-shadow: 0px -25px 20px #0e0e0e;">
-      <div style="position: relative;">
-        <!-- screw -->
-        <div style="position: absolute; top: 0px; right: 0px; width: 32px; height: 32px; background-image: linear-gradient(45deg, #868686, #cccccc, #868686); border-radius: 50%; border: 1px solid #a1a1a1;">
-          <div style="position: relative; margin: auto; top: 9px; width: 12px; height: 12px; background-color: #121212; border-radius: 50%;"></div>
-        </div>
-
-        <!-- power -->
-        <div style="position: absolute; top: -9px; right: 55px; width: 48px; height: 5px; background-color: #868686; border-radius: 4px 4px 0px 0px; border: 1px solid #a1a1a1;">
-        </div>
-
-        <!-- menu button -->
-        <div style="position: absolute; top: 42px; right: 1px; width: 30px; height: 30px; background-color: #f5bc00; border-radius: 50%; border: 1px solid #dfab00;">
-          <div style="position: relative; margin: auto; top: 8px; width: 12px; height: 12px; background-color: #ececec; border-radius: 50%;"></div>
-        </div>
-
-        <!-- grill -->
-        <div style="position: absolute; top: 90px; right: 8px; width: 16px; height: 80px; background-color: #797979; border-radius: 8px; border: 3px solid #8b8b8b;" ></div>
+    <div class="grid-container">
+      <div>
+        <img src="dioralogo.png" class="dioralogo" alt="Diora">
+        <p>An isometric 3D game for the Panic Playdate!</p>
       </div>
-      <!-- screen -->
-      <div style="border: 16px solid black; border-radius: 16px; padding: 0px; border-color: #262520; background-color: #262520; width: 432px; height: 272px; border: 1px outset #3a3a3a;">
-          <iframe style="position: relative; left: 15px; top: 15px;" width="400" height="240" src="https://www.youtube.com/embed/XI7gZ_Q6gmo?si=wW-gmWy2ECUjBVpl&amp;autoplay=1&mute=1"></iframe>
-      </div>
+      <div>
+        <div style="border-radius: 20px 20px 0px 0px; padding: 4px; background-image: linear-gradient(180deg, #FFC502 280px, transparent); width: 480px; height: 312px; margin: auto; box-shadow: 0px -10px 20px #0e0e0e;">
+          <div style="position: relative;">
+            <!-- screw -->
+            <div style="position: absolute; top: 0px; right: 0px; width: 32px; height: 32px; background-image: linear-gradient(45deg, #868686, #cccccc, #868686); border-radius: 50%; border: 1px solid #a1a1a1;">
+              <div style="position: relative; margin: auto; top: 9px; width: 12px; height: 12px; background-color: #121212; border-radius: 50%;"></div>
+            </div>
 
+            <!-- power -->
+            <div style="position: absolute; top: -9px; right: 55px; width: 48px; height: 5px; background-color: #868686; border-radius: 4px 4px 0px 0px; border: 1px solid #a1a1a1;">
+            </div>
+
+            <!-- menu button -->
+            <div style="position: absolute; top: 42px; right: 1px; width: 30px; height: 30px; background-color: #f5bc00; border-radius: 50%; border: 1px solid #dfab00;">
+              <div style="position: relative; margin: auto; top: 8px; width: 12px; height: 12px; background-color: #ececec; border-radius: 50%;"></div>
+            </div>
+
+            <!-- grill -->
+            <div style="position: absolute; top: 90px; right: 8px; width: 16px; height: 80px; background-color: #797979; border-radius: 8px; border: 3px solid #8b8b8b;" ></div>
+          </div>
+          <!-- screen -->
+          <div style="border: 16px solid black; border-radius: 16px; padding: 0px; border-color: #262520; background-color: #262520; width: 432px; height: 272px; border: 1px outset #3a3a3a;">
+              <iframe style="position: relative; left: 15px; top: 15px;" width="400" height="240" src="https://www.youtube.com/embed/XI7gZ_Q6gmo?si=wW-gmWy2ECUjBVpl&amp;autoplay=1&mute=1"></iframe>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 
-
+  <div class="section">
+    <h2>What is Diora?</h2>
+    <p>Diora is an isometric 3D game for the Panic Playdate! In development since 2022, Diora hopes to introduce impressive visuals and engaging gameplay using a fully custom 3D engine.</p>
+  </div>
 
   <div class="section">
     <h2>Cool Stuff</h2>
@@ -61,17 +67,12 @@
   </div>
 
   <div class="section">
-    <h2>Documentation</h2>
-    <!-- <a href="/advanced" style="margin: 8px" class="btn btn-outline-light" role="button" >Advanced Editing</a> -->
+    <h2>Level Editing</h2>
     <a href="/levelediting" style="margin: 8px" class="btn btn-outline-light" role="button">Level Editing</a>
     <a href="/blocks" style="margin: 8px" class="btn btn-outline-light" role="button">Block Library</a>
-    <!-- <a href="/commands" style="margin: 8px" class="btn btn-outline-light" role="button" >Commands</a> -->
-  </div>
-
-  <div class="section">
-    <h2>Tools</h2>
     <a href="/tool" style="margin: 8px" class="btn btn-outline-light" role="button">Dither Tool</a>
   </div>
+
 
 </body>
 </html>
