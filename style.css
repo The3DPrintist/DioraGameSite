@@ -129,6 +129,29 @@ select{
     )
 }
 
+.sectionbefore {
+    content: '';
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background: #1E1E1E;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    z-index: -1;
+    clip-path: polygon(
+        0 8px,
+        14px 0,
+        calc(100% - 14px) 0,
+        100% 8px,
+        100% calc(100% - 8px),
+        calc(100% - 14px) 100%,
+        14px 100%,
+        0% calc(100% - 8px),
+        0% 8px
+    )
+}
+
 .margin {
     margin: 15%;
     margin-top: 16px;
@@ -172,6 +195,7 @@ select{
       0% 8px
     )
 }
+
 
 .cornerbutton{
     position: fixed;
