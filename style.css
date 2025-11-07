@@ -92,6 +92,24 @@ code:hover{
     background-color: #313131;
 }
 
+.wishlistbutton{
+    margin: 8px;
+    background-color: #ffc518; 
+    color: #121212; 
+    margin-left: 7%; 
+    margin-top: -20px; 
+    margin-bottom: 32px;
+    border: 2px solid #121212; 
+    transform: skewY(-9deg) scaleY(0.9);
+    font-size: 1.25rem;
+    transition: 0.3s;
+}
+
+.wishlistbutton:hover{
+    background-color: #FFFFFF; 
+    transform: skewY(-9deg) scaleY(0.9) scale(1.05);
+}
+
 select{
     border-width: 0px;
     padding: 8px;
@@ -211,9 +229,10 @@ select{
 
 .dioralogo{
     width: 90%;
+    margin-top: 16px;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1446px) {
     .grid-container {
         display: grid;
         grid-template-columns: 1fr; /* Defines 1 columns */
@@ -250,10 +269,15 @@ select{
         margin-bottom: 16px;
     }
 
+    .dioralogo{
+        width: 100%;
+    }
+
     *
     {
         font-size:larger;
     }
+    
 
 }
 
