@@ -26,12 +26,12 @@
   <div class="section">
     <form>
       <label for="log">Choose a log:</label>
-      <select name="log" id="logselect" onchange="changeLog()">
-        <option value="none">None</option>
+      <select name="log" id="logselect" onchange="OnDropdownChanged()">
         <option value="1">Let's Get Caught Up</option>
         <option value="2">Inspirama</option>
         <option value="3">The Diorama Engine</option>
         <option value="4">Rules 3 -> n</option>
+        <!-- <option value="5">The last 90%</option> -->
       </select>
     </form>
   </div>
@@ -79,6 +79,14 @@
 
     }
 
+    function OnDropdownChanged(){
+      var select = document.getElementById("logselect");
+      const newParams = new URLSearchParams({ log: select.value});
+      window.history.pushState({}, "", "?" + newParams.toString());
+
+      changeLog();
+    }
+
     function reHightlight(){
       Prism.highlightAll();
     }
@@ -90,7 +98,10 @@
 
       selectLog(urllog)
     }else{
-      selectLog("none")
+      var select = document.getElementById("logselect");
+      select.selectedIndex = select.options.length - 1;
+      changeLog();
+
     }
 
   </script>
