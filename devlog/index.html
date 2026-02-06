@@ -59,9 +59,18 @@
       return(false);
     }
 
-    function selectLog(selection) {    
+    function selectLog(name) {    
       let select = document.getElementById("logselect");
-      select.value = selection;
+      select.value = name;
+
+      //add option if its not valid
+      if(select.value == ""){
+        var opt = document.createElement('option');
+        opt.value = name;
+        opt.innerHTML = name;
+        select.appendChild(opt);
+        select.value = name;
+      }
 
       changeLog()
     }

@@ -355,3 +355,14 @@ ul {
     width: 150px;
     border-radius: 50%;
 }
+
+.spoiler{
+  background-color: gray;
+  color: transparent;
+  user-select: none;
+}
+
+.spoiler:hover{
+  background-color: inherit;
+  color: inherit;
+}
