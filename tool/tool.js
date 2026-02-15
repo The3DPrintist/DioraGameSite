@@ -62,27 +62,23 @@ function displayImages() {
         tablectx.canvas.height = ih;
 
         let stack = 0
+        for(i=2;i<25;i++){
+            if(animlen % i == 0){
+                let nw = iw * (animlen/i);
+                let nh = ih * i;
+                if(nh<nw){
+                    tablectx.canvas.width = nw;
+                    tablectx.canvas.height = nh;
+                    stack = i;
+                }else{
+                    break;
+                }
 
-        if(animlen % 2 == 0){
-            tablectx.canvas.width = iw * (animlen/2);
-            tablectx.canvas.height = ih * 2;
-            stack = 2;
-        }
-
-        if(animlen % 3 == 0){
-            tablectx.canvas.width = iw * (animlen/3);
-            tablectx.canvas.height = ih * 3;
-            stack = 3;
-        }
-
-        if(animlen % 4 == 0){
-            tablectx.canvas.width = iw * (animlen/4);
-            tablectx.canvas.height = ih * 4;
-            stack = 4;
+            }
         }
 
         if(stack != 0){
-            addstat("🔠", "Stacking " + stack + " times for convenience.") //doesn't change file size lol
+            addstat("🔠", "Stacking " + stack + " times.") //doesn't change file size lol
         }
 
         rotctx.canvas.width = iw;
